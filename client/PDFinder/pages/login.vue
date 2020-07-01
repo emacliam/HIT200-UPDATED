@@ -1,83 +1,84 @@
 <template>
 <main class="">
-    <div>
 <!-- component -->
-<body class="font-mono bg-gray-400">
-		<!-- Container -->
-		<div class="container mx-auto">
-			<div class="flex justify-center px-6 my-12">
-				<!-- Row -->
-				<div class="w-full xl:w-3/4 lg:w-11/12 flex">
-					<!-- Col -->
-					<div
-						class="w-full h-auto bg-gray-400 hidden lg:block lg:w-1/2 bg-cover rounded-l-lg"
-						style="background-image: url('https://source.unsplash.com/K4mSJ7kc0As/600x800')"
-					></div>
-					<!-- Col -->
-					<div class="w-full lg:w-1/2 bg-white p-5 rounded-lg lg:rounded-l-none">
-						<h3 class="pt-4 text-2xl text-center">Welcome Back!</h3>
-						<form class="px-8 pt-6 pb-8 mb-4 bg-white rounded">
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="username">
-									Username
-								</label>
-								<input
-									class="w-full px-3 py-2 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="username"
-									type="text"
-									placeholder="Username"
-								/>
-							</div>
-							<div class="mb-4">
-								<label class="block mb-2 text-sm font-bold text-gray-700" for="password">
-									Password
-								</label>
-								<input
-									class="w-full px-3 py-2 mb-3 text-sm leading-tight text-gray-700 border border-red-500 rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="password"
-									type="password"
-									placeholder="******************"
-								/>
-								<p class="text-xs italic text-red-500">Please choose a password.</p>
-							</div>
-							<div class="mb-4">
-								<input class="mr-2 leading-tight" type="checkbox" id="checkbox_id" />
-								<label class="text-sm" for="checkbox_id">
-									Remember Me
-								</label>
-							</div>
-							<div class="mb-6 text-center">
-								<button
-									class="w-full px-4 py-2 font-bold text-white bg-blue-500 rounded-full hover:bg-blue-700 focus:outline-none focus:shadow-outline"
-									type="button"
-								>
-									Sign In
-								</button>
-							</div>
-							<hr class="mb-6 border-t" />
-							<div class="text-center">
-								<a
-									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-									href="/signup"
-								>
-									Create an Account!
-								</a>
-							</div>
-							<div class="text-center">
-								<a
-									class="inline-block text-sm text-blue-500 align-baseline hover:text-blue-800"
-									href="/Forgotpassword"
-								>
-									Forgot Password?
-								</a>
-							</div>
-						</form>
-					</div>
+<div class="container max-w-full mx-auto py-24 px-6">
+  <div class="font-sans">
+  <div class="max-w-sm mx-auto px-6">
+    <div class="relative flex flex-wrap">
+      <div class="w-full relative">
+        <div class="mt-6">
+           <div class="mb-5 pb-1border-b-2 text-center font-base text-gray-700">
+          </div>
+          <div class="text-center font-semibold text-teal-600">
+           WELCOME
+          </div>
+
+          <form class="mt-8">
+            <div class="mx-auto max-w-lg">
+				<div>
+					  <span class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">EMAIL</span>
+                 <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+                <input placeholder="" type="email"
+                  class="text-md block px-3 py-2 w-full
+                bg-white placeholder-gray-600 focus:placeholder-gray-500 focus:outline-none"
+				v-model="email"
+				>
+              </div>
 				</div>
-			</div>
-		</div>
-	</body>
+
+              <div class="py-2">
+                <span class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">PASSWORD</span>
+                <div class="relative bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+                  <input placeholder="" :type="show ? 'password' : 'text'" class="text-md block px-3 py-2 w-full
+                bg-white placeholder-gray-600
+                focus:outline-none"
+				v-model="password"
+				>
+                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+
+                    <svg class="h-6 text-gray-700" fill="none" @click="show = !show"
+                      :class="{'hidden': !show, 'block':show }" xmlns="http://www.w3.org/2000/svg"
+                      viewbox="0 0 576 512">
+                      <path fill="currentColor"
+                        d="M572.52 241.4C518.29 135.59 410.93 64 288 64S57.68 135.64 3.48 241.41a32.35 32.35 0 0 0 0 29.19C57.71 376.41 165.07 448 288 448s230.32-71.64 284.52-177.41a32.35 32.35 0 0 0 0-29.19zM288 400a144 144 0 1 1 144-144 143.93 143.93 0 0 1-144 144zm0-240a95.31 95.31 0 0 0-25.31 3.79 47.85 47.85 0 0 1-66.9 66.9A95.78 95.78 0 1 0 288 160z">
+                      </path>
+                    </svg>
+
+                    <svg class="h-6 text-gray-700" fill="none" @click="show = !show"
+                      :class="{'block': !show, 'hidden':show }" xmlns="http://www.w3.org/2000/svg"
+                      viewbox="0 0 640 512">
+                      <path fill="currentColor"
+                        d="M320 400c-75.85 0-137.25-58.71-142.9-133.11L72.2 185.82c-13.79 17.3-26.48 35.59-36.72 55.59a32.35 32.35 0 0 0 0 29.19C89.71 376.41 197.07 448 320 448c26.91 0 52.87-4 77.89-10.46L346 397.39a144.13 144.13 0 0 1-26 2.61zm313.82 58.1l-110.55-85.44a331.25 331.25 0 0 0 81.25-102.07 32.35 32.35 0 0 0 0-29.19C550.29 135.59 442.93 64 320 64a308.15 308.15 0 0 0-147.32 37.7L45.46 3.37A16 16 0 0 0 23 6.18L3.37 31.45A16 16 0 0 0 6.18 53.9l588.36 454.73a16 16 0 0 0 22.46-2.81l19.64-25.27a16 16 0 0 0-2.82-22.45zm-183.72-142l-39.3-30.38A94.75 94.75 0 0 0 416 256a94.76 94.76 0 0 0-121.31-92.21A47.65 47.65 0 0 1 304 192a46.64 46.64 0 0 1-1.54 10l-73.61-56.89A142.31 142.31 0 0 1 320 112a143.92 143.92 0 0 1 144 144c0 21.63-5.29 41.79-13.9 60.11z">
+                      </path>
+                    </svg>
+
+                  </div>
+                </div>
+              </div>
+              <div class="flex justify-between"><label class="block text-gray-500 font-bold my-4"><input type="checkbox"
+                    class="leading-loose text-pink-600"> <span class="py-2 text-sm text-gray-600 leading-snug"> Remember
+                    Me </span></label> <label class="block text-gray-500 font-bold my-4"><a
+                    href="#"
+                    class="cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400"><span>Forgot
+                      Password?</span></a></label></div>
+					  <div>
+                         <p>Dont have an Account? <nuxt-link to="/Apply" class="hover:underline text-teal-600"> Apply</nuxt-link>  Or if you already applied <nuxt-link to="/access"  class="hover:underline text-teal-600">Signup</nuxt-link> </p>
+					  </div>
+					  <span @click="onLogin" class="mt-3 text-lg  text-center font-semibold
+                bg-teal-600 w-full text-white rounded-lg
+                px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                Login
+              </span>
+            </div>
+          </form>
+
+        </div>
+      </div>
     </div>
+  </div>
+</div>
+</div>
 </main>
 
 </template>
@@ -85,6 +86,32 @@
 <script>
 export default {
     layout:"none",
+  data() {
+        return {
+           email:"",
+           password:"",
+		   show:false
+        }
+    },
+    methods: {
+   async onLogin(){
+       try {
+             let response =  await this.$auth.loginWith("local", {
+                   data: {
+                       email: this.email,
+                       password: this.password
+                   }
+         });
+         this.$toast.success('Successfully logged in').goAway(1000);
+			    this.$router.push("/home");
+
+
+       } catch (err) {
+   console.log(err)
+   this.$toast.error('Sorry there email or password is incorrect').goAway(1000);
+       }
+   }
+    },
 
 }
 </script>

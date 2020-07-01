@@ -357,6 +357,7 @@ Enteprise
 </template>
 <script>
 export default {
+	layout:"none",
     methods: {
        async Basic(){
             let response = await this.$axios.$put(`/api/payment/basic/${this.$auth.user._id}`);

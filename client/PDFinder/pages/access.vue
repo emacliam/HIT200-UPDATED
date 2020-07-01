@@ -40,6 +40,7 @@
 
 <script>
 export default {
+   layout:"none",
     data() {
          return {
             accessCode:''

@@ -1,6 +1,5 @@
 const router = require('express').Router();
 const Product = require("../models/product");
-const async = require('async')
 const cloudinary = require("cloudinary").v2;
 const multer = require("multer");
 
@@ -50,12 +49,14 @@ router.post('/products', (req, res) => {
 
                 let product = new Product();
                 product.owner = req.body.ownerID;
-                product.category = req.body.categoryID;
-                product.title = req.body.title;
+                product.name = req.body.name;
                 product.price = req.body.price;
                 product.description = req.body.description;
                 product.photo = url;
-                product.stockQuantity = req.body.stockQuantity;
+                product.modal = req.body.modal;
+                product.size = req.body.size;
+                product.type = req.body.type;
+                product.category = req.body.category;
 
                 product.save()
 
@@ -72,8 +73,9 @@ router.post('/products', (req, res) => {
 
 router.get('/products', async(req, res) => {
     try {
-        let products = await Product.find().populate('owner category')
-            .populate("reviews", "rating")
+        let products = await Product.find().populate('owner')
+            //later when i get to access them
+            /*   .populate("reviews", "rating") */
             .exec();
         res.json({
             success: true,
@@ -90,8 +92,9 @@ router.get('/products', async(req, res) => {
 //get request - get single product
 router.get('/products/:id', async(req, res) => {
     try {
-        let product = await Product.find({ _id: req.params.id }).populate('owner category')
-            .populate("reviews", "rating")
+        let product = await Product.find({ _id: req.params.id }).populate('owner')
+            //for rating and reviews
+            /*  .populate("reviews", "rating") */
             .exec();
         res.json({
             success: true,
@@ -119,7 +122,7 @@ router.put('/products/:id', (req, res) => {
         const uniqueFilename = new Date().toISOString()
 
         cloudinary.uploader.upload(
-            path, { public_id: `blog/${uniqueFilename}`, tags: `blog` }, // directory and tags are optional
+            path, { public_id: `products/${uniqueFilename}`, tags: `product` }, // directory and tags are optional
             async function(err, image) {
                 //note if there is an error we need to unlink the image from the server
                 if (err) return res.send(err)
@@ -131,14 +134,17 @@ router.put('/products/:id', (req, res) => {
                 const url = image.secure_url
                 let product = await Product.findOneAndUpdate({ _id: req.params.id }, {
                     $set: {
-                        title: req.body.title,
+                        name: req.body.name,
                         price: req.body.price,
-                        categoryID: req.body.categoryID,
-                        stockQuantity: req.body.stockQuantity,
+                        category: req.body.category,
+                        size: req.body.size,
                         //mind photo when updating
                         photo: url,
                         description: req.body.description,
-                        ownerID: req.body.ownerID
+                        type: req.body.type,
+                        modal: req.body.modal,
+                        date: Date.now()
+
                     }
                 }, { upsert: true });
 

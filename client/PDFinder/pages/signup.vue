@@ -1,6 +1,6 @@
 <template>
   <main>
-    <div class="container pt-5 pb-5">
+    <div class="container pt-5 pb-5 w-3/4 m-auto">
       <form>
         <span v-for="e in errors" :key="e">{{ e }}</span>
 
@@ -311,7 +311,6 @@
 
 <!-- section 4 -->
         <section v-if="step == 4">
-          <h3>Step 4</h3>
           <Step4 />
         </section>
 
@@ -346,6 +345,7 @@ import Step2 from "~/components/step2";
 import Step3 from "~/components/step3";
 import Step4 from "~/components/step4";
 export default {
+   layout:"none",
   components: {
     Step1,
     Step2,
@@ -384,7 +384,6 @@ export default {
   },
   methods: {
     nextstep() {
-
       this.step++;
     },
     prevstep() {
@@ -397,7 +396,7 @@ export default {
     async send() {
       console.log(this.form.selectedFile)
             let data = new FormData();
-    data.append("Bname:",this.form.Bname);
+    data.append("Bname",this.form.Bname);
     data.append("Bcategory",this.form.Bcategory);
     data.append("Bemail",this.form.Bemail);
     data.append("Bphone",this.form.Bphone);
@@ -417,18 +416,23 @@ export default {
     data.append("registered", true);
     data.append("Confirm",this.form.Confirm);
     data.append("paymentmade", false);
-
-    let response = await this.$axios.$post("/api/auth/signup", data);
+    if(this.form.Password === this.form.Confirm){
+  let response = await this.$axios.$post("/api/auth/signup", data);
     console.log(response);
     if(response.success){
-      this.$auth.loginWith("local",{
+     await this.$auth.loginWith("local",{
         data:{
-          Email:this.form.Email,
-          Password:this.form.Password,
+          email:this.form.Email,
+          password:this.form.Password
         }
       });
       this.$router.push("/payment")
     }
+    }else {
+      this.$toast.error("Passwords do not match").goAway(1000);
+    }
+
+
 
     }
   }

@@ -16,12 +16,9 @@ const UserSchema = new Schema({
     Username: String,
     Email: {
         type: String,
-        required: true,
-        unique: true
     },
     Password: {
         type: String,
-        required: true
     },
     Aline1: String,
     Aline2: String,
@@ -30,7 +27,18 @@ const UserSchema = new Schema({
     Country: String,
     Zipcode: String,
     registered: String,
-    paymentmade: false
+    Bdescription: String,
+    Adescription: String,
+    paymentmade: false,
+    Email1: String,
+    Email2: String,
+    Facebook: String,
+    Twitter: String,
+    Whatsapp: String,
+    Phone: String,
+    Other: String
+
+
 });
 
 //encrypting before saving

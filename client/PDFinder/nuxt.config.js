@@ -1,4 +1,4 @@
-const URL = 'http://localhost:3005'
+const URL = 'http://localhost:3000'
 export default {
     /*
      ** Nuxt rendering mode
@@ -28,7 +28,10 @@ export default {
      ** Plugins to load before mounting the App
      ** https://nuxtjs.org/guide/plugins
      */
-    plugins: [],
+    plugins: [{
+        src: '~plugins/vue-js-modal.js',
+        mode: 'client'
+    }],
     /*
      ** Nuxt.js dev-modules
      */
@@ -46,6 +49,7 @@ export default {
         // Doc: https://github.com/nuxt/content
         '@nuxtjs/auth',
         '@nuxtjs/toast',
+
     ],
     /*
      ** Axios module configuration
@@ -68,7 +72,9 @@ export default {
      ** Build configuration
      ** See https://nuxtjs.org/api/configuration-build/
      */
-    build: {},
+    build: {
+
+    },
     auth: {
         strategies: {
             local: {

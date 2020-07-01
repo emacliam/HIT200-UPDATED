@@ -1,83 +1,117 @@
 <template>
 <main>
-    <div class="text-center bg-blue-200 pt-24">
+    <div class="text-center bg-teal-50 pt-24">
         <h1 class="font-bold">Apply to Sell on ProductFinder Marketplace</h1>
         <h2 class="italic">Becoming a ProductFinder Seller is easy</h2>
         <h2 class="italic">Simply complete the form and and we'll be in touch within -10 business days </h2>
-        <h2 class="italic">We use your the email and phoneNumbers you are going to provide to get in touch with you</h2>
+        <h2 class="italic">We use the email and phoneNumbers you are going to provide to get in touch with you</h2>
         <form class="pb-16 bg-white border rounded-lg w-2/4 m-auto shadow-lg z-50">
             <!-- first section -->
-            <div>
-                <h1 class="font-bold">How can we get in touch?</h1>
-            <div class=" p-2 m-1">
-               <label for="FirstName">First Name</label>
-               <br>
-               <input type="text" name="FirstName" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="FirstName">
-           </div>
-               <div class=" p-2 m-1">
-               <label for="LastName">Last Name</label>
-               <br>
-               <input type="text" name="LastName" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="LastName">
-           </div>
-               <div class=" p-2 m-1">
-               <label for="Email">Email</label>
-               <br>
-               <input type="text" name="Email" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="Email">
-           </div>
-               <div class=" p-2 m-1">
-               <label for="PhoneNumber">Telephone Number <p class="text-gray-500">(Optional)</p></label>
-               <br>
-               <input type="tel" name="PhoneNumber" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="PhoneNumber">
-           </div>
-               <div class=" p-2 m-1">
-               <label for="MobileNumber">Mobile Number</label>
-               <p>Hint: +263 784675999 or +263 0784675999</p>
-               <br>
+            <div class="px-48 py-8">
+                <h1 class="font-bold underline mb-4">How can we get in touch?</h1>
+                <div class="my-6">
+                       <label for="FirstName" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">FirstName</label>
+     <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
 
-               <div>
-                   <label>Select country code</label>
-                   <br>
-                   <select name="callingCodes" id=""  v-model="CallingCodes">
-                       <option v-for="country in countries" :key="country" :value="country.callingCodes[0]">+{{country.callingCodes[0]}}
+
+               <input type="text" name="FirstName" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="FirstName">
+           </div>
+                </div>
+
+           <div class="my-6">
+                <label for="LastName" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">LastName</label>
+                <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+               <input type="text" name="LastName" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="LastName">
+           </div>
+           </div>
+
+  <div class="my-6">
+       <label for="Email" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Email</label>
+  <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+               <input type="text" name="Email" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="Email">
+           </div>
+  </div>
+
+<div class="my-6">
+     <label for="PhoneNumber" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3 w-auto">Telephone Number <p class="text-gray-500">(Optional)</p></label>
+    <div class="bg-white p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+               <input type="tel" name="PhoneNumber" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="PhoneNumber">
+           </div>
+</div>
+
+<div class="w-3/4 m-auto">
+        <label for="MobileNumber" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3 w-auto">Mobile Number</label>
+               <p class="font-bold text-gray-600 text-xs leading-8">(Hint: +263 784675999 or +263 0784675999)</p>
+
+      <div class="bg-white p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+               <div class="flex">
+
+
+                   <select name="callingCodes" id=""  v-model="CallingCodes" class="rounded">
+                       <option v-for="country in countries" :key="country.name" :value="country.callingCodes[0]">+{{country.callingCodes[0]}}
                        </option>
                    </select>
+                      <input type="phone" name="MobileNumber" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="MobileNumber">
                </div>
-               <input type="phone" name="MobileNumber" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="MobileNumber">
+
            </div>
+
+</div>
+
+
             </div>
             <!-- Second section -->
-            <div>
-                  <h1 class="font-bold">Tell us about your business</h1>
-                <div class=" p-2 m-1">
-                    <label for="CompanyName">Company Name</label>
-                    <br>
-                    <input type="text" name="CompanyName" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="CompanyName">
+            <div class="px-48 py-8">
+                  <h1 class="font-bold underline mb-4">Tell us about your business</h1>
+                  <div class="my-6">
+                       <label for="CompanyName" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Company Name</label>
+                   <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <input type="text" name="CompanyName" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="CompanyName">
                 </div>
-                 <div class=" p-2 m-1">
-                    <label for="Category">Category</label>
-                    <p>Eg.Beauty,Books etc</p>
-                    <br>
-                    <input type="text" name="Category" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="Category">
+                  </div>
+<div class="my-6">
+     <label for="Category" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Category</label>
+                    <p class="text-gray-500">Eg.Beauty,Books etc</p>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+                    <input type="text" name="Category" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="Category">
                 </div>
-                 <div class=" p-2 m-1">
-                     <p class="text-gray-500">If have more than one seperate with a "/"</p>
-                    <label for="SocialMedia">Social Media</label>
-                    <br>
-                    <textarea name="SocialMedia" id="" cols="30" rows="10" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-24 w-2/4 pl-2 bg-gray-200" v-model="SocialMedia"></textarea>
+</div>
+
+                <div class="my-6">
+
+                    <label for="SocialMedia" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Social Media</label>
+                      <p class="text-gray-500">If have more than one seperate with a "/"</p>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <textarea name="SocialMedia" id="" cols="30" rows="3" class="bp-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="SocialMedia"></textarea>
                 </div>
-                 <div class=" p-2 m-1">
-                    <label for="VATRegistered">Are you VAT registered?</label>
-                    <br>
-                    <select name="VATRegistered" id="" v-model="VATRegistered">
+                </div>
+                <div class="my-6">
+                     <label for="VATRegistered" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Are you VAT registered?</label>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+                    <select name="VATRegistered" id="" v-model="VATRegistered" class="w-full rounded">
                         <option value="">---</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
-                 <div class=" p-2 m-1">
-                    <label for="MonthlyRevenue">Monthly Revenue</label>
-                    <br>
-                    <select name="MonthlyRevenue" id="" v-model="MonthlyRevenue">
+                </div>
+
+<div class="my-6">
+        <label for="MonthlyRevenue" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Monthly Revenue</label>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+                    <select name="MonthlyRevenue" id="" v-model="MonthlyRevenue" class="w-full rounded">
                         <option value="">---</option>
                         <option value="Startup">FirstTime selling</option>
                         <option value="lessthan20K">Less than 20k</option>
@@ -87,77 +121,115 @@
                         <option value="More than 500k">More than 500k</option>
                     </select>
                 </div>
+</div>
+
             </div>
             <!-- section three -->
-            <div>
-                  <h1 class="font-bold">Business Owner / Director Details</h1>
-                <div class=" p-2 m-1">
-                    <label for="BusinessOwnerFName">Business Owner First Name</label>
-                    <br>
-                    <input type="text" name="BusinessOwnerFName" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="BusinessOwnerFName">
+            <div class="px-48 py-8">
+                  <h1 class="font-bold underline mb-4">Business Owner / Director Details</h1>
+                  <div class="my-6">
+                       <label for="BusinessOwnerFName" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Business Owner First Name</label>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <input type="text" name="BusinessOwnerFName" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="BusinessOwnerFName">
                 </div>
-                 <div class=" p-2 m-1">
-                    <label for="BusinessOwnerLName">Business Owner Last Name</label>
-                    <br>
-                    <input type="text" name="BusinessOwnerLName" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="BusinessOwnerLName">
+                  </div>
+
+               <div class="my-6">
+                   <label for="BusinessOwnerLName" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Business Owner Last Name</label>
+  <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <input type="text" name="BusinessOwnerLName" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="BusinessOwnerLName">
                 </div>
-                 <div class=" p-2 m-1">
-                    <label for="BusinessOwnerEmail">Business Owner Email Address</label>
-                    <br>
-                    <input type="text" name="BusinessOwnerEmail" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="BusinessOwnerEmail">
+               </div>
+
+               <div class="my-6">
+                    <label for="BusinessOwnerEmail" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Business Owner Email Address</label>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <input type="text" name="BusinessOwnerEmail" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="BusinessOwnerEmail">
                 </div>
+               </div>
+
             </div>
             <!-- section four -->
-            <div>
-                  <h1 class="font-bold">Tell us about your products</h1>
-                <div class=" p-2 m-1">
-                    <label for="ProductsInfo">Number of Unique Products</label>
-                    <br>
-                    <input type="text" name="ProductsInfo" id="" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-8 w-2/4 pl-2 bg-gray-200" v-model="ProductsInfo">
+            <div class="px-48 py-8">
+                  <h1 class="font-bold underline mb-4">Tell us about your products</h1>
+                  <div class="my-6">
+                        <label for="ProductsInfo" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Number of Unique Products</label>
+     <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <input type="text" name="ProductsInfo" id="" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="ProductsInfo">
                 </div>
-                <div class=" p-2 m-1">
-                    <label for="TypeofBrands">What brands or products do you carry</label>
+                  </div>
+
+           <div class="my-6">
+                  <label for="TypeofBrands" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">What brands or products do you carry</label>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
                     <br>
-                    <textarea name="TypeofBrands" id="" cols="30" rows="10" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-24 w-2/4 pl-2 bg-gray-200" v-model="TypeofBrands"></textarea>
+                    <textarea name="TypeofBrands" id="" cols="30" rows="3" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="TypeofBrands"></textarea>
                 </div>
-                <div class=" p-2 m-1">
-                    <label for="StockQn">Do you carry stock?</label>
+           </div>
+
+<div class="my-6">
+        <label for="StockQn" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Do you carry stock?</label>
+  <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
                     <br>
-                    <select name="StockQn" id="" v-model="StockQn">
+                    <select name="StockQn" id="" v-model="StockQn" class="w-full rounded">
                         <option value="">---</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
-                <div class=" p-2 m-1">
-                    <label for="PhysicalStoreQn">Do you have a physical store?<p class="text-gray-500">(Optional)</p></label>
+</div>
+
+<div class="my-6">
+    <label for="PhysicalStoreQn" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Do you have a physical store?(Optional)</label>
+  <div class="bg-white p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
                     <br>
-                    <select name="PhysicalStoreQn" id="" v-model="PhysicalStoreQn">
+                    <select name="PhysicalStoreQn" id="" v-model="PhysicalStoreQn" class="w-full rounded">
                         <option value="">---</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
-                <div class=" p-2 m-1">
-                    <label for="SupplierQn">Are you a supplier to retail outlets<p class="text-gray-500">(Optional)</p></label>
+</div>
+
+              <div class="my-6">
+                  <label for="SupplierQn"  class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Are you a supplier to retail outlets(Optional)</label>
+  <div class="bg-white p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
                     <br>
-                    <select name="SupplierQn" id="" v-model="SupplierQn">
+                    <select name="SupplierQn" id="" v-model="SupplierQn" class="w-full rounded">
                         <option value="">---</option>
                         <option value="Yes">Yes</option>
                         <option value="No">No</option>
                     </select>
                 </div>
-                 <div class=" p-2 m-1">
-                    <label for="AdditionalInfo">Do you have any additional comments?</label>
-                    <br>
-                    <textarea name="AdditionalInfo" id="" cols="30" rows="10" class="border-b-2 border-gray-700 focus:border-blue-500 focus:bg-white h-24 w-2/4 pl-2 bg-gray-200" v-model="AdditionalInfo"></textarea>
+              </div>
+
+              <div class="my-6">
+                   <label for="AdditionalInfo" class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Do you have any additional comments?</label>
+ <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+
+
+                    <textarea name="AdditionalInfo" id="" cols="30" rows="3" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="AdditionalInfo"></textarea>
                 </div>
+              </div>
+
             </div>
 
             <!-- buttons -->
-            <div>
-                <span @click="onApply" class="rounded-full px-4 py-1 border bg-blue-500 w-48 border-gray-600 ">Apply</span>
-                <nuxt-link to="/" class="rounded-full px-4 py-1 border bg-blue-200 w-48 border-gray-600 ">Cancel</nuxt-link>
+            <div class="px-32">
+                <span @click="onApply"  class=" m-2 text-base ml-2 hover:scale-110 focus:outline-none flex justify-center px-48 py-2 rounded font-bold cursor-pointer hover:bg-teal-600 bg-teal-600 text-teal-100 border duration-200 ease-in-out border-teal-600 transition">Apply</span>
+                <nuxt-link to="/"       class=" m-2 text-base ml-2 hover:scale-110 focus:outline-none flex justify-center px-48 py-2 rounded font-bold cursor-pointer hover:bg-teal-600 bg-teal-600 text-teal-100 border duration-200 ease-in-out border-teal-600 transition">Cancel</nuxt-link>
 
             </div>
 
@@ -168,6 +240,7 @@
 </template>
 <script>
 export default {
+     layout:"none",
     async asyncData({ $axios }){
         try {
             const countries = await $axios.$get('/api/countries');

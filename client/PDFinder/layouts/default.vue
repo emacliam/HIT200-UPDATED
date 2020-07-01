@@ -27,7 +27,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="/PersonalAccSet" title="Account"  class="h-16 px-6 flex items-center hover:text-white w-full" :class="$nuxt.$route.name === 'PersonalAccSet' ? 'bg-teal-700' : ''" >
+        <nuxt-link to="Account/PersonalAccSet" title="Account"  class="h-16 px-6 flex items-center hover:text-white w-full" :class="$nuxt.$route.name === 'PersonalAccSet' ? 'bg-teal-700' : ''" >
           <i class="mx-auto">
             <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z" />
@@ -55,8 +55,8 @@
       </li>
     </ul>
 
-    <div class="mt-auto h-16 flex items-center w-full">
-      <img style="filter: invert(85%);" class="h-8 w-10 mx-auto" src="https://raw.githubusercontent.com/bluebrown/tailwind-zendesk-clone/master/public/assets/chi.png" />
+    <div class="mt-auto h-16 flex items-center w-full p-1">
+    <a href="#" @click="onLogout" class="bg-teal-800 h-8 p-1 rounded text-white w-full hover:bg-red-800" style="text-decoration:none">Logout</a>
     </div>
   </nav>
 
@@ -77,34 +77,11 @@
           </button>
           <span class="absolute p-1 hidden group-hover:block">
             <ul id="add" role="listbox" class="outline-none py-2 bg-white border rounded-md w-screen max-w-md w-dropdown-large shadow-lg focus:outline-none leading-relaxed">
-              <li role="separator" class="mb-2">
-                <label class="block px-4 py-3 font-semibold">
-                  New
-                </label>
-                <hr />
-              </li>
               <li role="option" class="px-6 py-1 my-1 focus:outline-none focus:bg-blue-100 hover:bg-blue-100 cursor-pointer">
-                Products
-              </li>
-              <li role="separator" class="mb-2">
-                  <!-- filter using date added using moment -->
-                <label class="block px-4 py-3 font-semibold">Recently Added</label>
-                <hr />
-              </li>
-              <li role="option" class="px-6 py-1 my-1 focus:outline-none focus:bg-blue-100 hover:bg-blue-100 cursor-pointer">
-                <div class="flex">
-                  <div class="pr-2">
-                    <span style="padding: 2px 5px; font-size: 0.7rem;" class="font-mono rounded-sm bg-red-600 text-white leading-none">O</span>
-                  </div>
-                  <div class="flex-1">
-                    <p>Vertias - ams opps issue</p>
-                    <p class="text-gray-600">
-                      <span>#ticket/14352</span>
-                      <span class="mx-1 font-black">&#183;</span>
-                      <span>Nico Braun</span>
-                    </p>
-                  </div>
-                </div>
+                <nuxt-link to="/products/add" class="w-56 px-12">
+                              Products
+                </nuxt-link>
+
               </li>
             </ul>
           </span>
@@ -114,7 +91,7 @@
       <!-- to bar right  -->
       <ul aria-label="top bar right" aria-orientation="horizontal" class="px-8 flex items-center">
         <li class="relative">
-          <input title="Search Bar" aria-label="search bar" role="search" class="pr-8 pl-4 py-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out focus:border-black focus:cursor-text w-4 focus:w-64 placeholder-transparent focus:placeholder-gray-500" type="text" placeholder="Search Chi Desk Support" />
+          <input title="Search Bar" aria-label="search bar" role="search" class="pr-8 pl-4 py-2 rounded-md cursor-pointer transition-all duration-300 ease-in-out focus:border-black focus:cursor-text w-4 focus:w-64 placeholder-transparent focus:placeholder-gray-500" type="text" placeholder="Search ProductFinder Support" />
           <i class="pointer-events-none absolute top-0 right-0 h-full flex items-center pr-3">
             <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M21.172 24l-7.387-7.387c-1.388.874-3.024 1.387-4.785 1.387-4.971 0-9-4.029-9-9s4.029-9 9-9 9 4.029 9 9c0 1.761-.514 3.398-1.387 4.785l7.387 7.387-2.828 2.828zm-12.172-8c3.859 0 7-3.14 7-7s-3.141-7-7-7-7 3.14-7 7 3.141 7 7 7z" />
@@ -123,28 +100,33 @@
         </li>
 
         <li class="h-8 w-8 ml-3">
-          <button title="Notifications" aria-label="notifications" class="w-full h-full text-white bg-gray-600 rounded-md focus:outline-none focus:shadow-outline">
-            <i>
+          <button title="Notifications" aria-label="notifications" class="w-full h-full text-white rounded-md focus:outline-none focus:shadow-outline">
+            <nuxt-link to="/Notifications" class="">
+                 <i class="text-gray-600">
               <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M15.137 3.945c-.644-.374-1.042-1.07-1.041-1.82v-.003c.001-1.172-.938-2.122-2.096-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.667 2.712-1.985 11.715-6.862 13.306v1.749h20v-1.749c-4.877-1.591-2.195-10.594-6.863-13.306zm-3.137-2.945c.552 0 1 .449 1 1 0 .552-.448 1-1 1s-1-.448-1-1c0-.551.448-1 1-1zm3 20c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3h6z" />
               </svg>
             </i>
+            </nuxt-link>
           </button>
         </li>
 
         <li class="h-8 w-8 ml-3">
-          <button title="Products" aria-label="chi desk products" class="w-full h-full rounded-md focus:outline-none focus:shadow-outline">
+          <button title="Products" aria-label="products" class="w-full h-full rounded-md focus:outline-none focus:shadow-outline">
+            <nuxt-link to="/products">
             <i class="text-gray-600">
               <svg class="fill-current w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M11 11h-11v-11h11v11zm13 0h-11v-11h11v11zm-13 13h-11v-11h11v11zm13 0h-11v-11h11v11z" />
               </svg>
             </i>
+            </nuxt-link>
+
           </button>
         </li>
 
         <li class="h-10 w-10 ml-3">
-          <button title="Page Menu" aria-label="page menu" class="h-full w-full rounded-full border focus:outline-none focus:shadow-outline">
-            <img class="h-full w-full rounded-full mx-auto" :src="$auth.$state.user.Blogo" />
+          <button :title="$auth.$state.user.Email" aria-label="page menu" class="h-full w-full rounded-full border focus:outline-none focus:shadow-outline">
+            <img class="h-full w-full rounded-full mx-auto border-2 border-blue-600" :src="$auth.$state.user.Blogo" />
           </button>
         </li>
       </ul>
@@ -153,14 +135,16 @@
     <!-- section body header -->
     <header aria-label="page caption" class="flex-none flex h-16 bg-gray-100 border-t px-4 items-center">
       <h1 v-if="$nuxt.$route.name == 'home'" id="page-caption" class="font-semibold text-lg">Dashboard</h1>
-      <h1 v-if="$nuxt.$route.name == 'SocialAccSet'"  id="page-caption" class="font-semibold text-lg">Account</h1>
-      <h1 v-if="$nuxt.$route.name == 'BusinessAccSet'"  id="page-caption" class="font-semibold text-lg">Account</h1>
-      <h1 v-if="$nuxt.$route.name == 'LocationSet'"  id="page-caption" class="font-semibold text-lg">Account</h1>
-      <h1 v-if="$nuxt.$route.name == 'PersonalAccSet'"  id="page-caption" class="font-semibold text-lg">Account</h1>
+      <h1 v-if="$nuxt.$route.path == '/Account/SocialAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Social settings</h1>
+      <h1 v-if="$nuxt.$route.path == '/Account/BusinessAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Business settings</h1>
+      <h1 v-if="$nuxt.$route.path == '/Account/LocationSet'"  id="page-caption" class="font-semibold text-lg">Account > Location settings</h1>
+      <h1 v-if="$nuxt.$route.path == '/Account/PersonalAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Personal settings</h1>
       <h1 v-if="$nuxt.$route.name == 'Settings'"  id="page-caption" class="font-semibold text-lg">Settings</h1>
       <h1 v-if="$nuxt.$route.name == 'Statistics'"  id="page-caption" class="font-semibold text-lg">Statistics</h1>
       <h1 v-if="$nuxt.$route.name == 'Reviews'"  id="page-caption" class="font-semibold text-lg">Reviews and Comments</h1>
         <h1 v-if="$nuxt.$route.path == '/products/add'"  id="page-caption" class="font-semibold text-lg">Products > Add</h1>
+        <h1 v-if="$nuxt.$route.path == '/products'"  id="page-caption" class="font-semibold text-lg">Products</h1>
+         <h1 v-if="$nuxt.$route.path.slice(0,14) == '/products/Edit'"  id="page-caption" class="font-semibold text-lg">Edit Product</h1>
     </header>
 
     <!-- main content -->
@@ -176,7 +160,11 @@
 
 <script>
 export default {
-
+  methods: {
+    async onLogout(){
+      await this.$auth.logout()
+      }
+},
 }
 </script>
 <style scoped>

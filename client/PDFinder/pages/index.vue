@@ -33,22 +33,24 @@
             </div>
         </div>
     </section>
-    <section class="bg-gray-900 sm:py-32 py-16">
+    <section class="bg-gray-900 sm:py-32 py-10 text-center">
+        <h4 class="text-2xl underline">Testimonies</h4>
+        <h1> "This is what others are saying about our services"</h1>
         <div class="container mx-auto sm:flex-row flex-col flex ">
             <div class="sm:w-1/3 w-full sm:mb-0 mb-16">
                 <img src="https://demos.onepagelove.com/html/leno/images/testimonial-1.jpg" class="rounded-full w-24 h-24 mx-auto mb-2">
-                <p class="italic text-gray-500 text-center my-3">I just finished my trial period and was so amazed with the support and results that I purchased this template.</p>
-                <p class="font-bold  text-gray-400 text-center text-xl">Sandy Grain - Designer</p>
+                <p class="italic text-gray-500 text-center my-3">This is a great platform for marketing.Made 300 + sells by using this website.</p>
+                <p class="font-bold  text-gray-400 text-center text-xl">Sandy Grain - Enterprenuer</p>
             </div>
             <div class="sm:w-1/3 w-full sm:mb-0 mb-16">
                 <img src="https://demos.onepagelove.com/html/leno/images/testimonial-2.jpg" class="rounded-full w-24 h-24 mx-auto mb-2">
-                <p class="italic text-gray-500 text-center my-3">Searching for a great marketing automation app was difficult but thankfully I found this template.</p>
-                <p class="font-bold  text-gray-400 text-center text-xl">Bruce Cashman - Developer</p>
+                <p class="italic text-gray-500 text-center my-3">Wonderfull Platform!</p>
+                <p class="font-bold  text-gray-400 text-center text-xl">Bruce Cashman - Retailer</p>
             </div>
             <div class="sm:w-1/3 w-full sm:mb-0 mb-16">
                 <img src="https://demos.onepagelove.com/html/leno/images/testimonial-3.jpg" class="rounded-full w-24 h-24 mx-auto mb-2">
-                <p class="italic text-gray-500 text-center my-3">Who would have thought that this template can provide such amazing results in just a few weeks of use.</p>
-                <p class="font-bold  text-gray-400 text-center text-xl">Amanda Savage - Administrator</p>
+                <p class="italic text-gray-500 text-center my-3"></p>
+                <p class="font-bold  text-gray-400 text-center text-xl">Amanda Savage - </p>
             </div>
         </div>
     </section>
@@ -56,10 +58,27 @@
         <div class="container mx-auto">
             <h1 class="text-5xl font-bold uppercase text-center text-gray-300">Features</h1>
             <div class="flex justify-center">
-                <p class="w-1/2 text-center text-gray-300">This template was designed based on input from personal development coaches and popular trainers so it offers all</p>
+                <ul>
+                    <li>Quality Advertisement</li>
+                    <li>Quality Advertisement</li>
+                    <li>Quality Advertisement</li>
+                    <li>Quality Advertisement</li>
+                    <li>Quality Advertisement</li>
+                </ul>
             </div>
         </div>
     </section>
+    <section class="bg-gray-900 h-auto w-full text-center">
+        <div class="text-2xl font-bold">Famous Stores Using Our Platform</div>
+        <div class="flex justify-center w-full pt-4">
+        <img class="m-2 w-24 h-10" title="OK SUPERMARKET" src="/OK.png" alt="OK">
+        <img class="m-2 w-24 h-10" title="SPAR SUPERMARKET" src="/SPAR.png" alt="SPAR">
+        <img class="m-2 w-24 h-10" title="TM SUPERMARKET" src="/TM.png" alt="TM">
+        </div>
+    </section>
+    <footer class="p-2">
+        <h1 class="h-auto w-auto">ProductFinder.inc <span class="rounded-full border border-white px-1">C</span> </h1>
+    </footer>
 </div>
 </main>
 </template>
@@ -68,6 +87,7 @@
 import Logo from '~/components/Logo.vue'
 
 export default {
+     layout:"none",
   components: {
     Logo
   }

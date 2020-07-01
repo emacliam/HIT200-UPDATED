@@ -1,26 +1,30 @@
 <template>
     <main>
-        <div class="my-10">
+        <div class="my-4 fixed hidden md:block h1">
       <div class="bg-white rounded overflow-hidden shadow-lg">
         <div class="text-center p-6  border-b">
           <img
-            class="h-24 w-24 rounded-full mx-auto"
-            src="https://randomuser.me/api/portraits/men/24.jpg"
-            alt="Randy Robertson"
+            class="h-24 w-24 rounded-full mx-auto border p-1 border-teal-600"
+            :src="$auth.$state.user.Blogo"
+            :alt="$auth.$state.user.Bname"
           />
           <p class="pt-2 text-lg font-semibold">{{$auth.$state.user.Fname}}{{$auth.$state.user.Lname}}</p>
           <p class="text-md text-gray-600">{{$auth.$state.user.Email}}</p>
           <div class="mt-5">
-            <nuxt-link
-              to="#"
-              class="border rounded-full py-2 px-4 text-xs font-semibold text-gray-700"
-            >
-              Edit Logo
-            </nuxt-link>
+                <!-- component -->
+<div class="flex  flex-col w-auto items-center justify-center bg-grey-lighter">
+    <label class="w-auto flex flex-col items-center rounded-md uppercase border border-blue cursor-pointer">
+        <span class=" text-sm leading-normal w-auto px-2">Select to update logo</span>
+        <input type='file' class="hidden" @change="onFileSelected"/>
+    </label>
+    <p>{{ fileName }}</p>
+    <p @click="send()" class=" bg-teal-600 cursor-pointer mt-1 px-1 rounded-lg">update</p>
+</div>
+
           </div>
         </div>
         <div class="border-b">
-          <nuxt-link to="/LocationSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/Account/LocationSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-teal-500">
               <svg
                 fill="none"
@@ -39,7 +43,7 @@
               <p class="text-xs text-gray-500">Add/Remove Location</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="/BusinessAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/Account/BusinessAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-teal-500">
               <svg
                 fill="none"
@@ -59,7 +63,7 @@
               <p class="text-xs text-gray-500">Billing,Edit/Remove Business Settings</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="/PersonalAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/Account/PersonalAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-teal-500">
               <svg
                 fill="none"
@@ -78,7 +82,7 @@
               <p class="text-xs text-gray-500">Email, profile, etc</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="/SocialAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/Account/SocialAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-green-600">
               <svg
                 fill="none"
@@ -102,18 +106,13 @@
         </div>
 
         <div class="">
-          <nuxt-link to="/" class="px-4 py-2 pb-4 hover:bg-gray-100 flex">
-            <p class="text-md font-medium text-teal-500 leading-none">Product updates</p>
-          </nuxt-link>
-          <nuxt-link to="/" class="px-4 py-2 pb-4 hover:bg-gray-100 flex">
-            <p class="text-md font-medium text-teal-500 leading-none">Status updates</p>
-          </nuxt-link>
+
           <nuxt-link to="/" class="px-4 py-2 pb-4 hover:bg-gray-100 flex">
             <p class="text-md font-medium text-teal-500 leading-none">Support FAQ</p>
           </nuxt-link>
-          <nuxt-link to="/" class="px-4 py-2 pb-4 hover:bg-gray-100 flex">
-            <p class="text-md font-medium text-teal-500 leading-none">Logout</p>
-          </nuxt-link>
+          <div class="px-4 py-2 pb-4 hover:bg-gray-100 flex">
+            <p @click="onLogout" class="text-md font-medium text-teal-500 leading-none cursor-pointer">Logout</p>
+          </div>
         </div>
       </div>
     </div>
@@ -124,6 +123,45 @@
 
 <script>
 export default {
+  methods: {
+    async onLogout(){
+      await this.$auth.logout()
+      }
+},
+data() {
+  return {
+      selectedFile:"",
+       fileName:'',
+  }
+},
+methods:{
+        onFileSelected(){
+        this.selectedFile = event.target.files[0];
+        this.fileName = event.target.files[0].name;
+    },
+      async send(){
+        try {
+          let data = new FormData();
+        data.append("Blogo",this.selectedFile, this.selectedFile.name);
 
+        let response = await this.$axios.$put('/api/auth/user/logo', data)
+        if(response.success){
+          await this.$auth.fetchUser();
+          this.$toast.success('successfully uploaded').goAway(1000);
+        }else{
+          this.$toast.error('something happened failed to upload').goAway(1000);
+        }
+        } catch (err) {
+          console.log(err)
+
+        }
+
+      },
+     async onLogout(){
+ await this.$auth.logout()
+      }
+    }
 }
 </script>
+<style scoped>
+</style>

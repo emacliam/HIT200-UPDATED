@@ -3,19 +3,22 @@ const mongooseAlgolia = require('mongoose-algolia');
 const Schema = mongoose.Schema;
 
 const ProductSchema = new Schema({
-    category: {
-        type: Schema.Types.ObjectId,
-        ref: "Category"
-    },
+    category: String,
     owner: {
         type: Schema.Types.ObjectId,
-        ref: "Owner"
+        ref: "User"
     },
-    title: String,
+    name: String,
     description: String,
     photo: String,
-    price: Number,
-    stockQuantity: Number,
+    price: String,
+    modal: String,
+    size: String,
+    type: String,
+    date: {
+        type: Date,
+        default: Date.now
+    },
     reviews: [{ type: Schema.Types.ObjectId, ref: "Review" }]
 }, {
     toObject: { virtuals: true },

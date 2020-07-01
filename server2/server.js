@@ -34,16 +34,16 @@ const applyBusiness = require('./routes/applybusiness');
 const accessCodes = require('./routes/AccessCodes');
 const authRoute = require('./routes/auth');
 const paymentRoute = require('./routes/payment');
+const ProductRoute = require('./routes/products');
 
 app.use("/api", applyBusiness);
 app.use("/api", accessCodes);
 app.use("/api", authRoute);
 app.use("/api", paymentRoute);
+app.use("/api", ProductRoute);
 
 
-
-
-app.listen(3005, (err) => {
+app.listen(3000, (err) => {
     if (err) {
         console.log(err);
     } else {
