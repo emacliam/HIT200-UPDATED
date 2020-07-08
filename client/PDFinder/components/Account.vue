@@ -14,11 +14,9 @@
                 <!-- component -->
 <div class="flex  flex-col w-auto items-center justify-center bg-grey-lighter">
     <label class="w-auto flex flex-col items-center rounded-md uppercase border border-blue cursor-pointer">
-        <span class=" text-sm leading-normal w-auto px-2">Select to update logo</span>
+        <span class=" text-sm leading-normal w-auto px-2">edit logo</span>
         <input type='file' class="hidden" @change="onFileSelected"/>
     </label>
-    <p>{{ fileName }}</p>
-    <p @click="send()" class=" bg-teal-600 cursor-pointer mt-1 px-1 rounded-lg">update</p>
 </div>
 
           </div>
@@ -135,21 +133,22 @@ data() {
   }
 },
 methods:{
-        onFileSelected(){
-        this.selectedFile = event.target.files[0];
-        this.fileName = event.target.files[0].name;
-    },
-      async send(){
+      async  onFileSelected(){
+        this.$nuxt.$loading.start()
         try {
+          this.selectedFile = event.target.files[0];
+        this.fileName = event.target.files[0].name;
           let data = new FormData();
         data.append("Blogo",this.selectedFile, this.selectedFile.name);
 
         let response = await this.$axios.$put('/api/auth/user/logo', data)
         if(response.success){
           await this.$auth.fetchUser();
-          this.$toast.success('successfully uploaded').goAway(1000);
+          this.$nuxt.$loading.finish()
+          this.$toast.success('successfully uploaded').goAway(4000);
         }else{
-          this.$toast.error('something happened failed to upload').goAway(1000);
+          this.$nuxt.$loading.finish()
+          this.$toast.error('something happened failed to upload').goAway(4000);
         }
         } catch (err) {
           console.log(err)

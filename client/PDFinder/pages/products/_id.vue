@@ -210,7 +210,7 @@ export default {
   if(response.success){
        const data = await this.$options.asyncData(this.$root.$options.context)
        this.product = data.product
-       this.$toast.success('Image Deleted please reload your browser').goAway(4000);
+       this.$toast.success('Image Deleted').goAway(4000);
           this.$nuxt.$loading.finish()
 
   }
@@ -231,7 +231,7 @@ export default {
     if(response.success){
         const data = await this.$options.asyncData(this.$root.$options.context)
        this.product = data.product
-    this.$toast.success('Image Deleted please reload your browser').goAway(4000);
+    this.$toast.success('Image Deleted').goAway(4000);
         this.$nuxt.$loading.finish()
     }else{
      this.$nuxt.$loading.finish()

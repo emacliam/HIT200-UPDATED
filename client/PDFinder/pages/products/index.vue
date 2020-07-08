@@ -1,11 +1,8 @@
 <template>
   <main>
-<div>
-<div>
-    <script src="https://dashboard-tailwindcomponents.netlify.app/assets/build/js/main.js?id=df2dfe6a4e2040ea9f2c"></script>
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen bg-gray-200 font-roboto">
-        <div class="flex-1 flex flex-col overflow-hidden">
-            <main class="flex-1 overflow-x-hidden overflow-y-auto bg-gray-200">
+    <div class="flex h-screen bg-gray-200 font-roboto">
+        <div class="flex-1 flex flex-col">
+            <main class="flex-1 bg-gray-200">
                 <div class="container mx-auto px-6 py-8">
 
                     <div class="mt-4">
@@ -35,7 +32,7 @@
 
                     <div class="flex flex-col mt-8">
                         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
-                            <div class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-teal-600">
+                            <div class="align-middle inline-block min-w-full shadow sm:rounded-lg border-b border-teal-600">
                                 <table class="min-w-full">
                                     <thead>
                                     <tr>
@@ -87,9 +84,6 @@
             </main>
         </div>
     </div>
-</div>
-
-  </div>
   </main>
 </template>
 

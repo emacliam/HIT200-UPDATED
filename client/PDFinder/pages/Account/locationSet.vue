@@ -1,12 +1,13 @@
 <template>
     <main class="bg-gray-200 min-h-screen flex">
         <Account/>
-            <div class="container mx-auto">
-            <div class="inputs w-full max-w-2xl p-6 mx-auto">
-                <h2 class="text-2xl text-gray-900">Account Setting</h2>
-                <form class="mt-6 border-t border-gray-400 pt-4">
-                    <div class='flex flex-wrap -mx-3 mb-6'>
-                        <div class='w-full md:w-full px-3 mb-6'>
+            <div class="container ml-56 border border-2">
+            <div class="inputs w-full max-w-4xl p-6 mx-auto border border-2 flex justify-between">
+
+                <form class=" input  w-full">
+                     <h2 class="text-2xl text-gray-900 mb-6 border-b border-gray-400">Account Setting</h2>
+                    <div class='flex flex-wrap mb-6'>
+                        <div class='w-full md:w-full mb-6'>
                             <label class='block uppercase tracking-wide text-gray-700 text-xs font-bold mb-2'>Country</label>
                             <div class="flex-shrink w-full inline-block">
                                <select class="block appearance-none text-gray-600 w-full bg-white border border-gray-400 shadow-inner px-4 py-2 pr-8 rounded placeholder-black"
@@ -69,8 +70,14 @@
                             <div class="flex justify-end">
                                 <span class="appearance-none bg-gray-200 text-gray-900 px-2 py-1 shadow-sm border border-gray-400 rounded-md mr-3 cursor-pointer" @click="send">save changes</span>
                             </div>
+                            <hr>
+
                     </div>
+
                 </form>
+                   <div class="w-full flex-grow map">
+                               <Map/>
+                    </div>
             </div>
         </div>
 
@@ -78,10 +85,12 @@
 </template>
 <script>
 import Account from "~/components/Account";
+import Map from "~/components/map";
 
 export default {
       components: {
-    Account
+    Account,
+    Map
   },
     async asyncData({ $axios , params}){
         let response = await $axios.$get('/api/auth/user');
@@ -136,7 +145,8 @@ export default {
 </script>
 <style scoped>
 
-
-
+.input{
+  width:30rem;
+}
 
 </style>

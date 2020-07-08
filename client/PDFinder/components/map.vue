@@ -1,11 +1,7 @@
 <template>
-  <div class="w-full flex mt-16">
-    <div>
-    <p class="m-auto text-teal-600 ml-2">Please Drag the red pointer to your location and hit send</p>
-    </div>
-
-  <div class="flex-grow flex flex-col items-center">
-   <div id="map" class="border border-teal m-auto rounded-lg"></div>
+  <div class="w-full mt-16">
+  <div class="flex items-center flex-col">
+   <div id="map" class="rounded-lg"></div>
    <div class="pt-8">
 <input id="coordinates" class="coordinates cursor-pointer hidden" :placeholder="latitude">
 <input id="coordinateslat" class="coordinateslat cursor-pointer hidden" :placeholder="latitude">
@@ -169,6 +165,6 @@ map.once('touchend', onUp);
 
 <style scoped>
 body { margin: 0; padding: 0; }
-	#map { height:60vh; width: 90%; }
+	#map { height:60vh; width: 94%; }
 
 </style>
