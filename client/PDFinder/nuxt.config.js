@@ -32,6 +32,7 @@ export default {
         src: '~plugins/vue-js-modal.js',
         mode: 'client'
     }],
+    loading: '~/components/loading.vue',
     /*
      ** Nuxt.js dev-modules
      */
@@ -51,6 +52,7 @@ export default {
         '@nuxtjs/toast',
 
     ],
+
     /*
      ** Axios module configuration
      ** See https://axios.nuxtjs.org/options
