@@ -1,28 +1,29 @@
 <template>
-   <main>
-     <div>
-
-        <section>
-         <div class="p-5">
-            <div class="mt-8 p-4">
+   <main class="max-w-screen">
+            <div class="mt-8 p-4 max-w-xl border rounded-lg bg-gray-100 m-auto">
               <div>
                 <div class="flex items-center">
-                  <img :src="product.photo" alt="Product image" class="text-sm border-2 border-double border-teal-600 p-1 rounded-full w-24 h-24">
-                  <p class="m-2">Edit <span class="font-bold text-teal-600">{{product.name}}</span></p>
+                  <div>
+  <img :src="product.photo" alt="Product image" class="text-sm border-2 border-double border-teal-600 p-1 rounded-full w-24 h-24">
+  <p class="text-sm text-gray-500 leading-tight italic">(current Image)</p>
+                  </div>
+
+                  <p class="ml-24 text-2xl">Edit <span class="font-bold text-teal-600 text-xl">{{product.name}}</span></p>
                 </div>
 
-                <div class="flex flex-col md:flex-row">
+                <div class="">
                      <div class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Product Image</div>
-                    <div
-                      class="bg-white my-2 p-1 flex border border-dotted h-24 w-48 border-gray-500 rounded svelte-1l8159u"
-                    >
-                       <input type="file" class="p-1 px-2 appearance-none outline-none font-medium w-full text-gray-800 text-2xl " @change="onFileSelected" />
+                             <div class="flex items-center mt-4">
+      <label class="w-48 h-8  text-center items-center bg-teal-600 rounded-lg text-blue font-bold tracking-wide uppercase border border-teal-600 cursor-pointer hover:bg-black hover:text-white">
+        <span>Image</span>
+        <input type='file' class="hidden" v-on:change="handleFileUpload()"/>
+      </label>
+      <img v-bind:src="imagePreview" v-show="showPreview" class="w-24 rounded-full border border-teal-600 h-24 ml-4"/>
+    </div>
 
-                    </div>
-                      <p>{{fileName}}</p>
                   </div>
 
 
@@ -56,7 +57,7 @@
                   </div>
                 </div>
 <!--  2 -->
-                <div class="flex flex-col md:flex-row">
+                <div class="">
                   <div class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
@@ -89,7 +90,7 @@
                 </div>
 
                   <!--  3 -->
-                     <div class="flex flex-col md:flex-row">
+                     <div class="mb-8">
                   <div class="w-full mx-2 flex-1 svelte-1l8159u">
                       <div>
                         <div
@@ -141,16 +142,13 @@
                   </div>
                 </div>
                         <div>
-                            <span @click="onUpdateProduct" class="py-2 px-16 appearance-none outline-none m-auto text-gray-800 rounded bg-teal-600 cursor-pointer">
+                            <span @click="onUpdateProduct" class="py-2 px-24 hover:text-white hover:bg-black appearance-none outline-none m-auto  rounded bg-teal-600 cursor-pointer">
                                 EDIT
                             </span>
                         </div>
 
               </div>
             </div>
-          </div>
-        </section>
-      </div>
    </main>
 </template>
 
@@ -169,6 +167,7 @@ export default {
   },
   data () {
        return {
+      product:'',
       name: '',
       price: "",
       modal:'',
@@ -177,32 +176,73 @@ export default {
       category:'',
       description: '',
       selectedFile: null,
-      fileName: ''
+      fileName: '',
+      file:'',
+      showPreview: false,
+      imagePreview: ''
 
     }
   },
   methods: {
-    onFileSelected (event) {
-      this.selectedFile = event.target.files[0]
-      console.log(this.selectedFile)
-      this.fileName = event.target.files[0].name
-    },
     async onUpdateProduct () {
-      const data = new FormData()
-      data.append('ownerID', this.$auth.$state.user._id)
-      data.append('name', this.name)
-      data.append('price', this.price)
-      data.append('description', this.description)
-      data.append('modal', this.modal)
-      data.append('size', this.size)
-      data.append('type', this.type)
-      data.append('category', this.category)
-      data.append('photo', this.selectedFile, this.selectedFile.name)
-      const result = await this.$axios.$put(`http://localhost:3000/api/products/${this.$route.params.id}`, data)
-      console.log(result)
+   try {
+       this.$nuxt.$loading.start()
+        const data = {
+          ownerID:this.$auth.$state.user._id,
+          name:this.name,
+          price:this.price,
+          description:this.description,
+          modal:this.modal,
+          size:this.size,
+          type:this.type,
+          category:this.category
+        }
+      /* data.append('photo', this.selectedFile, this.selectedFile.name) */
+     const result = await this.$axios.$put(`/api/products/${this.$route.params.id}`,data)
+     console.log(result)
+     if(result.success === true){
+       this.$toast.success('Product Edited').goAway(2000);
+       this.$nuxt.$loading.finish()
+       this.$router.push('/products')
 
-      this.$router.push('/products')
-    }
+     }else{
+       this.$toast.error('Something happened').goAway(2000);
+       this.$nuxt.$loading.finish()
+
+     }
+
+
+   } catch (error) {
+     this.$toast.error('Something happened').goAway(2000);
+     this.$nuxt.$loading.finish()
+   }
+
+    },
+      async handleFileUpload(){
+         this.$nuxt.$loading.start()
+        try {
+          this.selectedFile = event.target.files[0];
+        this.fileName = event.target.files[0].name;
+          let data = new FormData();
+        data.append("photo",this.selectedFile, this.selectedFile.name);
+
+        let response = await this.$axios.$put(`/api/products/image/${this.$route.params.id}`, data)
+        if(response.success){
+          const data = await this.$options.asyncData(this.$root.$options.context)
+          console.log(data)
+          this.product = data.product
+          this.$nuxt.$loading.finish()
+          this.$toast.success('successfully uploaded').goAway(4000);
+        }else{
+          this.$nuxt.$loading.finish()
+          this.$toast.error('something happened failed to upload').goAway(4000);
+        }
+        } catch (err) {
+          console.log(err)
+
+        }
+
+      }
   }
 }
 </script>

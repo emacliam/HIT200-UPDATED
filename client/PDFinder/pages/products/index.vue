@@ -44,8 +44,8 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody class="bg-white">
-                                    <tr v-for="(product, index) in products" :key="product._id">
+                                    <tbody class="bg-white" v-for="(product, index) in products" :key="product._id">
+                                    <tr v-if="product.owner._id === $auth.$state.user._id">
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
@@ -89,11 +89,15 @@
 
 <script>
 export default {
+    data() {
+        return {
+            products:''
+        }
+    },
   // async data is fetching data before loading page
   async asyncData ({ $axios }) {
     try {
       const response = await $axios.$get('/api/products')
-      console.log(response);
       return {
         products: response.products
       }
@@ -102,14 +106,25 @@ export default {
   },
   methods: {
     async onDeleteProduct (id, index) {
+        this.$nuxt.$loading.start()
       try {
         const response = await this.$axios.$delete(`/api/products/${id}`)
-        if (response.status) {
+        if (response.success === true) {
           this.products.splice(index, 1)
+          if(this.products){
+            const data = await this.$options.asyncData(this.$root.$options.context)
+           this.products = data.products
+          }
+
+           this.$toast.success('Image Deleted').goAway(2000);
+           this.$nuxt.$loading.finish()
         }
       } catch (error) {
         console.log(error)
+        this.$toast.error('Something went wrong').goAway(2000);
       }
+
+
     },
   }
 }

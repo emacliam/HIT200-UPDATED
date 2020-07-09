@@ -10,18 +10,18 @@ dotenv.config()
 const app = express()
 
 mongoose.connect(process.env.DATABASE, {
-  useCreateIndex: true,
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-},
-err => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('connected to mongo db')
-  }
-})
-// middlwware
+            useCreateIndex: true,
+            useNewUrlParser: true,
+            useUnifiedTopology: true
+        },
+        err => {
+            if (err) {
+                console.log(err)
+            } else {
+                console.log('connected to mongo db')
+            }
+        })
+    // middlwware
 app.use(cors())
 app.use(morgan('dev'))
 app.use(bodyParser.json())
@@ -33,6 +33,7 @@ const authRoute = require('./routes/auth')
 const paymentRoute = require('./routes/payment')
 const ProductRoute = require('./routes/products')
 const GalleryRoute = require('./routes/Images')
+const ReportRoute = require('./routes/Reports');
 
 app.use('/api', applyBusiness)
 app.use('/api', accessCodes)
@@ -40,11 +41,12 @@ app.use('/api', authRoute)
 app.use('/api', paymentRoute)
 app.use('/api', ProductRoute)
 app.use('/api', GalleryRoute)
+app.use('/api', ReportRoute)
 
 app.listen(3000, (err) => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('connected on port 3005 ')
-  }
+    if (err) {
+        console.log(err)
+    } else {
+        console.log('connected on port 3005 ')
+    }
 })

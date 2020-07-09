@@ -1,9 +1,9 @@
 <template>
-<main class="">
+<main class="h-screen w-screen">
 <!-- component -->
 <div class="container max-w-full mx-auto py-24 px-6">
   <div class="font-sans">
-  <div class="max-w-sm mx-auto px-6">
+  <div class="max-w-sm mx-auto px-6 bg-white py-4 rounded">
     <div class="relative flex flex-wrap">
       <div class="w-full relative">
         <div class="mt-6">
@@ -35,7 +35,7 @@
                 focus:outline-none"
 				v-model="password"
 				>
-                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5">
+                  <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer">
 
                     <svg class="h-6 text-gray-700" fill="none" @click="show = !show"
                       :class="{'hidden': !show, 'block':show }" xmlns="http://www.w3.org/2000/svg"
@@ -56,18 +56,18 @@
                   </div>
                 </div>
               </div>
-              <div class="flex justify-between"><label class="block text-gray-500 font-bold my-4"><input type="checkbox"
-                    class="leading-loose text-pink-600"> <span class="py-2 text-sm text-gray-600 leading-snug"> Remember
-                    Me </span></label> <label class="block text-gray-500 font-bold my-4"><a
+              <div class="flex justify-between">
+               <div></div>
+                    <label class="block text-gray-500 font-bold my-4"><a
                     href="#"
-                    class="cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400"><span>Forgot
+                    class="cursor-pointer tracking-tighter text-black border-b-2 border-gray-200 hover:border-gray-400 hover:text-teal-600"><span>Forgot
                       Password?</span></a></label></div>
 					  <div>
                          <p>Dont have an Account? <nuxt-link to="/Apply" class="hover:underline text-teal-600"> Apply</nuxt-link>  Or if you already applied <nuxt-link to="/access"  class="hover:underline text-teal-600">Signup</nuxt-link> </p>
 					  </div>
 					  <span @click="onLogin" class="mt-3 text-lg  text-center font-semibold
-                bg-teal-600 w-full text-white rounded-lg
-                px-6 py-3 block shadow-xl hover:text-white hover:bg-black">
+                bg-teal-600 w-full rounded-lg
+                px-6 py-3 block shadow-xl hover:text-white hover:bg-black cursor-pointer">
                 Login
               </span>
             </div>

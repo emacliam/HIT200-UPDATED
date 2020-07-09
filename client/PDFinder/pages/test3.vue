@@ -420,11 +420,10 @@ export default {
       this.step--;
     },
     onFileSelected(){
-
+        this.form.selectedFile = event.target.files[0];
+        this.form.fileName = event.target.files[0].name;
     },
     async send() {
-      try {
-
       this.$nuxt.$loading.start()
     let data = new FormData();
     data.append("Bname",this.form.Bname);
@@ -450,40 +449,29 @@ export default {
     console.log(data)
     if(this.form.Password === this.form.Confirm){
   let response = await this.$axios.$post("/api/auth/signup", data);
-   if(response.code === "EAI_AGAIN"){
-         this.$toast.error('something went wrong').goAway(2000);
-         this.$nuxt.$loading.finish()
-    }
+    console.log(response);
     if(response.success){
-     this.$nuxt.$loading.finish()
      await this.$auth.loginWith("local",{
         data:{
           email:this.form.Email,
           password:this.form.Password
         }
       });
+      this.$nuxt.$loading.finish()
       this.$router.push("/payment")
     }
     }else {
-      this.$toast.error("Passwords do not match").goAway(2000);
-      this.$nuxt.$loading.finish()
+      this.$toast.error("Passwords do not match").goAway(1000);
     }
-
-      } catch (error) {
-         this.$toast.error('something went wrong').goAway(2000);
-         this.$nuxt.$loading.finish()
-      }
 
 
 
     },
       handleFileUpload(){
-        this.form.selectedFile = event.target.files[0];
-        this.form.fileName = event.target.files[0].name;
         /*
           Set the local file variable to what the user has selected.
         */
-        this.form.selectedFile = this.$refs.file.files[0];
+        this.file = this.$refs.file.files[0];
 
         /*
           Initialize a File Reader object
@@ -503,17 +491,17 @@ export default {
         /*
           Check to see if the file is not empty.
         */
-        if( this.form.selectedFile ){
+        if( this.file ){
           /*
             Ensure the file is an image file.
           */
-          if ( /\.(jpe?g|png|gif)$/i.test( this.form.selectedFile.name ) ) {
+          if ( /\.(jpe?g|png|gif)$/i.test( this.file.name ) ) {
             /*
               Fire the readAsDataURL method which will read the file in and
               upon completion fire a 'load' event which we will listen to and
               display the image in the preview.
             */
-            reader.readAsDataURL( this.form.selectedFile );
+            reader.readAsDataURL( this.file );
           }
         }
       }

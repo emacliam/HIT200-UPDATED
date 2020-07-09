@@ -1,6 +1,6 @@
 <template>
-  <main class="h-screen w-screen pt-8">
-    <div class="container pt-5 pb-5 w-3/4 m-auto bg-white rounded-lg">
+  <main>
+    <div class="container pt-5 pb-5 w-3/4 m-auto">
       <form>
         <span v-for="e in errors" :key="e">{{ e }}</span>
 
@@ -91,14 +91,13 @@
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Company Logo(optional)</div>
-    <div class="flex items-center mt-4">
-      <label class="w-48 h-8  text-center items-center bg-teal-600 rounded-lg text-blue font-bold tracking-wide uppercase border border-teal-600 cursor-pointer hover:bg-black hover:text-white">
-        <span>Add Logo</span>
-        <input type='file' class="hidden" id="file" ref="file" v-on:change="handleFileUpload()"/>
-      </label>
-      <img v-bind:src="imagePreview" v-show="showPreview" class="w-24 rounded-full border border-teal-600 h-24 ml-4"/>
-    </div>
+                    <div
+                      class="bg-white my-2 p-1 flex border border-dotted h-24 w-48 border-gray-500 rounded svelte-1l8159u"
+                    >
+                       <input type="file" class="p-1 px-2 appearance-none outline-none w-full text-gray-800 text-2xl " @change="onFileSelected" />
 
+                    </div>
+                      <p>{{form.fileName}}</p>
                   </div>
                 </div>
 
@@ -313,49 +312,23 @@
 <!-- section 4 -->
         <section v-if="step == 4">
           <Step4 />
-          <div class="mt-8 flex items-center justify-center">
-            <div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Business name:</span>{{ form.Bname }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business category:</span>{{ form.Bcategory }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business email:</span>{{ form.Bemail }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business phone:</span>{{ form.Bphone}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business type:</span>{{ form.Btype}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">First name:</span>{{form.Fname}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Last name:</span>{{form.Lname}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Username:</span>{{form.Username}}</div>
-            </div>
-            <div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Email:</span>{{form.Email}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address one:</span>{{form.Aline1}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address two:</span>{{form.Aline2}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">City:</span>{{form.City}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">State:</span>{{form.State}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Country:</span>{{form.Country}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Zipcode:</span>{{form.Zipcode}}</div>
-          <div class="m-4"></div>
-
-            </div>
-             <img v-bind:src="imagePreview" v-show="showPreview" class="w-48 rounded-lg border border-teal-600 h-48 ml-4"/>
-          </div>
-
-
         </section>
 
 
         <div class="flex p-2 mt-4">
           <button
-            class="text-base w-48 hover:bg-black hover:text-white uppercase bg-teal-600 flex justify-center px-4 py-2 rounded font-bold cursor-pointer"
+            class="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-gray-200 bg-gray-100 text-gray-700 border duration-200 ease-in-out border-gray-600 transition"
             v-if="step != 1"
             @click.prevent="prevstep"
           >Previous</button>
           <div class="flex-auto flex flex-row-reverse">
             <button
-              class="text-base w-48 hover:bg-black hover:text-white uppercase bg-teal-600 flex justify-center px-4 py-2 rounded font-bold cursor-pointer"
+              class="text-base ml-2 hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-teal-600 bg-teal-600 text-teal-100 border duration-200 ease-in-out border-teal-600 transition"
               v-if="step != totalsteps"
               @click.prevent="nextstep"
             >Next</button>
             <button
-              class="text-base w-48 hover:bg-black hover:text-white uppercase bg-teal-600 flex justify-center px-4 py-2 rounded font-bold cursor-pointer"
+              class="text-base hover:scale-110 focus:outline-none flex justify-center px-4 py-2 rounded font-bold cursor-pointer hover:bg-teal-200 bg-teal-100 text-teal-700 border duration-200 ease-in-out border-teal-600 transition"
               v-if="step == 4"
               @click.prevent="send"
             >Submit</button>
@@ -381,9 +354,6 @@ export default {
   },
   data() {
     return {
-         file: '',
-        showPreview: false,
-        imagePreview: '',
       form: {
     Bname:"" ,
     Bcategory:"" ,
@@ -420,13 +390,11 @@ export default {
       this.step--;
     },
     onFileSelected(){
-
+        this.form.selectedFile = event.target.files[0];
+        this.form.fileName = event.target.files[0].name;
     },
     async send() {
-      try {
-
-      this.$nuxt.$loading.start()
-    let data = new FormData();
+    const data = new FormData();
     data.append("Bname",this.form.Bname);
     data.append("Bcategory",this.form.Bcategory);
     data.append("Bemail",this.form.Bemail);
@@ -448,14 +416,10 @@ export default {
     data.append("Confirm",this.form.Confirm);
     data.append("paymentmade", false);
     console.log(data)
-    if(this.form.Password === this.form.Confirm){
+  /*   if(this.form.Password === this.form.Confirm){
   let response = await this.$axios.$post("/api/auth/signup", data);
-   if(response.code === "EAI_AGAIN"){
-         this.$toast.error('something went wrong').goAway(2000);
-         this.$nuxt.$loading.finish()
-    }
+    console.log(response);
     if(response.success){
-     this.$nuxt.$loading.finish()
      await this.$auth.loginWith("local",{
         data:{
           email:this.form.Email,
@@ -465,62 +429,12 @@ export default {
       this.$router.push("/payment")
     }
     }else {
-      this.$toast.error("Passwords do not match").goAway(2000);
-      this.$nuxt.$loading.finish()
-    }
-
-      } catch (error) {
-         this.$toast.error('something went wrong').goAway(2000);
-         this.$nuxt.$loading.finish()
-      }
+      this.$toast.error("Passwords do not match").goAway(1000);
+    } */
 
 
 
-    },
-      handleFileUpload(){
-        this.form.selectedFile = event.target.files[0];
-        this.form.fileName = event.target.files[0].name;
-        /*
-          Set the local file variable to what the user has selected.
-        */
-        this.form.selectedFile = this.$refs.file.files[0];
-
-        /*
-          Initialize a File Reader object
-        */
-        let reader  = new FileReader();
-
-        /*
-          Add an event listener to the reader that when the file
-          has been loaded, we flag the show preview as true and set the
-          image to be what was read from the reader.
-        */
-        reader.addEventListener("load", function () {
-          this.showPreview = true;
-          this.imagePreview = reader.result;
-        }.bind(this), false);
-
-        /*
-          Check to see if the file is not empty.
-        */
-        if( this.form.selectedFile ){
-          /*
-            Ensure the file is an image file.
-          */
-          if ( /\.(jpe?g|png|gif)$/i.test( this.form.selectedFile.name ) ) {
-            /*
-              Fire the readAsDataURL method which will read the file in and
-              upon completion fire a 'load' event which we will listen to and
-              display the image in the preview.
-            */
-            reader.readAsDataURL( this.form.selectedFile );
-          }
-        }
-      }
     }
   }
+};
 </script>
-<style scoped>
-
-
-</style>

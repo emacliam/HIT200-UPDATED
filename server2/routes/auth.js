@@ -26,10 +26,11 @@ cloudinary.config({
 
 /* signup Route */
 router.post('/auth/signup', async(req, res) => {
-    const response = User.findOne({ Email: req.body.email })
-    if (response.Email === req.body.Email) {
-        console.log('user already exist')
+    const response = User.findOne({ Email: req.body.Email })
+    if (response.Email) {
+        console.log('user exists')
     } else {
+        console.log('user doest exists')
         try {
             const upload = multer({ storage }).single('Blogo')
             upload(req, res, function(err) {
@@ -90,6 +91,10 @@ router.post('/auth/signup', async(req, res) => {
                 success: false,
                 message: err.message
             })
+            const fsExtra = require('fs-extra')
+
+            fsExtra.emptyDirSync('../upload/')
+                ///fix the unlink of everything in a server ryt now
         }
     }
 })
@@ -149,7 +154,7 @@ router.post('/auth/login', async(req, res) => {
 router.put('/auth/user', verifyToken, async(req, res) => {
     try {
         const foundUser = await User.findOne({ _id: req.decoded._id })
-        console.log(req.body)
+
         if (foundUser) {
             if (req.body.Bname) foundUser.Bname = req.body.Bname
             if (req.body.Bcategory) foundUser.Bcategory = req.body.Bcategory

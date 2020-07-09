@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="bg-teal-600">
     <nuxt />
   </div>
 </template>
@@ -13,9 +13,5 @@ export default {
 </script>
 
 <style scoped>
-  body {
-     font-size: 13px;
-     line-height: 19px;
-     color:#111
-  }
+
 </style>

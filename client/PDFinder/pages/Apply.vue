@@ -1,10 +1,13 @@
 <template>
 <main>
-    <div class="text-center bg-teal-50 pt-24">
+    <div class="text-center bg-teal-50 pt-24 pb-4">
+        <div class="uppercase text-teal-600 text-center rounded bg-white m-auto w-2/4 p-1 mb-1">
         <h1 class="font-bold">Apply to Sell on ProductFinder Marketplace</h1>
         <h2 class="italic">Becoming a ProductFinder Seller is easy</h2>
         <h2 class="italic">Simply complete the form and and we'll be in touch within -10 business days </h2>
         <h2 class="italic">We use the email and phoneNumbers you are going to provide to get in touch with you</h2>
+        </div>
+
         <form class="pb-16 bg-white border rounded-lg w-2/4 m-auto shadow-lg z-50">
             <!-- first section -->
             <div class="px-48 py-8">
@@ -228,8 +231,8 @@
 
             <!-- buttons -->
             <div class="px-32">
-                <span @click="onApply"  class=" m-2 text-base ml-2 hover:scale-110 focus:outline-none flex justify-center px-48 py-2 rounded font-bold cursor-pointer hover:bg-teal-600 bg-teal-600 text-teal-100 border duration-200 ease-in-out border-teal-600 transition">Apply</span>
-                <nuxt-link to="/"       class=" m-2 text-base ml-2 hover:scale-110 focus:outline-none flex justify-center px-48 py-2 rounded font-bold cursor-pointer hover:bg-teal-600 bg-teal-600 text-teal-100 border duration-200 ease-in-out border-teal-600 transition">Cancel</nuxt-link>
+                <span @click="onApply"  class=" m-2 text-base hover:text-white ml-2 focus:outline-none flex justify-center px-48 py-2 rounded font-bold cursor-pointer hover:bg-black bg-teal-600">Apply</span>
+                <nuxt-link to="/"       class=" m-2 text-base hover:text-white ml-2 focus:outline-none flex justify-center px-48 py-2 rounded font-bold cursor-pointer hover:bg-black bg-teal-600">Cancel</nuxt-link>
 
             </div>
 
