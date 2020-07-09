@@ -196,7 +196,7 @@ export default {
        const data = await this.$options.asyncData(this.$root.$options.context)
        this.product = data.product
 
-       this.$toast.success("Image Uploaded Reload for them to show").goAway(4000);
+       this.$toast.success("Image Uploaded").goAway(4000);
        this.$nuxt.$loading.finish()
      }
      this.$router.push(`/products/${this.$route.params.id}`);
@@ -231,7 +231,7 @@ export default {
     if(response.success){
         const data = await this.$options.asyncData(this.$root.$options.context)
        this.product = data.product
-    this.$toast.success('Image Deleted').goAway(4000);
+    this.$toast.success('Image change').goAway(4000);
         this.$nuxt.$loading.finish()
     }else{
      this.$nuxt.$loading.finish()

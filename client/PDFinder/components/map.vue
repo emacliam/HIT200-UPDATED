@@ -153,10 +153,12 @@ map.once('touchend', onUp);
     },
     send(){
      let data={
-        latitude:coordinateslat.value,
-        longitude:coordinates.value
+        Latitude:coordinateslat.value,
+        Longitude:coordinates.value
       }
-      console.log(data);
+      const response = this.$axios.$put(`/api/map/${this.$state.$auth.user._id}`)
+
+//////////////////////
 
     }
   }
