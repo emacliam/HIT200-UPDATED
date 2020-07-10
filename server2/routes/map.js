@@ -1,9 +1,11 @@
 const router = require('express').Router();
 const User = require('../models/user');
+const verifyToken = require('../middlewares/verify-token');
 
-router.put('/map/:id', async(req, res) => {
+router.put('/map', verifyToken, async(req, res) => {
+    console.log(req.body)
     try {
-        const user = await User.findOne({ _id: req.params.id })
+        const user = await User.findOne({ _id: req.decoded._id })
         user.Latitude = req.body.Latitude;
         user.Longitude = req.body.Longitude;
 
@@ -17,6 +19,7 @@ router.put('/map/:id', async(req, res) => {
             success: false,
             message: err.message
         })
+        console.log(err)
     }
 
 });

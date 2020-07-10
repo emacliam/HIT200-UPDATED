@@ -29,14 +29,15 @@ head(){
         "pk.eyJ1IjoiZW1hY2xpYW0iLCJhIjoiY2tieGszaG41MDg5MTJ0bjQ4Znl1dXAzdiJ9.xUQXzyDzLkt2PlUy_y2vXg",
       map: {},
       lat: 31.05337,
-      lng: -17.82772,
+      lng:-17.82772,
       latitude:{},
-      longitude:{}
+      longitude:{},
+      zoom:12
 
     };
   },
-  mounted() {
-    this.createMap();
+ mounted() {
+this.createMap();
   },
   methods: {
     createMap() {
@@ -51,7 +52,7 @@ var map = new mapboxgl.Map({
 container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11',
 center: [this.lat, this.lng],
-zoom: 12
+zoom: this.zoom
 });
 
 // Add zoom and rotation controls to the map.
@@ -151,14 +152,21 @@ map.once('touchend', onUp);
 
 
     },
-    send(){
+   async send(){
+      this.$nuxt.$loading.start()
      let data={
         Latitude:coordinateslat.value,
         Longitude:coordinates.value
       }
-      const response = this.$axios.$put(`/api/map/${this.$state.$auth.user._id}`)
 
-//////////////////////
+      const response = await this.$axios.$put('/api/map',data)
+      if(response.success){
+        this.$nuxt.$loading.finish()
+         this.$toast.success('location saved').goAway(2000);
+      }else{
+        this.$nuxt.$loading.finish()
+         this.$toast.error('Something happened').goAway(2000);
+      }
 
     }
   }

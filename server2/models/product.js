@@ -20,7 +20,7 @@ const ProductSchema = new Schema({
         default: ['']
     },
     date: {
-        type: Date,
+        type: String,
         default: Date.now
     },
     reviews: [{ type: Schema.Types.ObjectId, ref: 'Review' }]

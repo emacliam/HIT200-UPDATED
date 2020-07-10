@@ -15,7 +15,7 @@
             </select>
         </div>
 
-            <div class="form mt-4">
+            <div class="form mt-4 mb-4">
                 <div class="flex flex-col text-sm">
                     <label for="title" class="font-bold mb-2 uppercase text-gray-600">Title</label>
                     <input class=" appearance-none border border-gray-200 p-2 focus:outline-none focus:border-gray-500" type="text" placeholder="Enter a title" v-model="title">
@@ -31,8 +31,8 @@
                </div>
             </div>
 
-            <div class="submit">
-                <button @click="onReport" class=" w-full bg-teal-600 shadow-lg px-4 py-2 rounded-lg hover:bg-black hover:text-white mt-8 text-center font-semibold focus:outline-none ">Submit</button>
+            <div >
+                <span @click="onReport" class=" cursor-pointer w-full bg-teal-600 shadow-lg px-4 py-2 rounded-lg hover:bg-black hover:text-white mt-8 text-center font-semibold focus:outline-none ">Submit</span>
             </div>
     </form>
     </div>
@@ -56,6 +56,7 @@ export default {
                 email:this.email,
                 description:this.description
             }
+
              const report = await this.$axios.$post('/api/report', data);
              console.log(report)
               if(report.success === true){

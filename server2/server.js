@@ -34,6 +34,8 @@ const paymentRoute = require('./routes/payment')
 const ProductRoute = require('./routes/products')
 const GalleryRoute = require('./routes/Images')
 const ReportRoute = require('./routes/Reports');
+const mapRoute = require('./routes/map');
+const StatsRoute = require('./routes/statistics');
 
 app.use('/api', applyBusiness)
 app.use('/api', accessCodes)
@@ -42,6 +44,8 @@ app.use('/api', paymentRoute)
 app.use('/api', ProductRoute)
 app.use('/api', GalleryRoute)
 app.use('/api', ReportRoute)
+app.use('/api', mapRoute)
+app.use('/api', StatsRoute)
 
 app.listen(3000, (err) => {
     if (err) {
