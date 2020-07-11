@@ -152,6 +152,7 @@ router.post('/auth/login', async(req, res) => {
     })
     /* update profile */
 router.put('/auth/user', verifyToken, async(req, res) => {
+    console.log(req.body)
     try {
         const foundUser = await User.findOne({ _id: req.decoded._id })
 
@@ -184,6 +185,8 @@ router.put('/auth/user', verifyToken, async(req, res) => {
             if (req.body.Whatsapp) foundUser.Whatsapp = req.body.Whatsapp
             if (req.body.Phone) foundUser.Phone = req.body.Phone
             if (req.body.Other) foundUser.Other = req.body.Other
+
+            if (req.body.isChecked) foundUser.isChecked = req.body.isChecked
 
             const response = await foundUser.save()
             console.log(response)

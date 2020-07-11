@@ -38,7 +38,11 @@ const UserSchema = new Schema({
     Other: String,
 
     Latitude: String,
-    Longitude: String
+    Longitude: String,
+    isChecked: {
+        type: String,
+        default: false
+    }
 
 })
 

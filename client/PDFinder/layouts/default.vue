@@ -2,7 +2,8 @@
 <main>
 <div class="h-full w-full flex overflow-hidden antialiased text-gray-800 bg-white h-screen">
   <!-- section body side nav -->
-  <nav aria-label="side bar" aria-orientation="vertical" class="flex-none flex flex-col items-center text-center bg-teal-900 text-gray-400 border-r">
+  <nav aria-label="side bar" aria-orientation="vertical" class="flex-none flex flex-col items-center text-center text-gray-400 border-r" :class="$auth.$state.user.isChecked === 'true' ? 'bg-gray-900' : 'bg-teal-900'">
+
     <div class="h-16 flex items-center w-full">
       <svg class="h-12 w-12 mx-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8" height="8"><defs><linearGradient id="b" x1="1073.403" x2="1097.116" y1="516.451" y2="544.308" gradientTransform="translate(-1794.872 342.343) scale(1.53785)" gradientUnits="userSpaceOnUse" xlink:href="#a"/><linearGradient id="a"><stop offset="0" stop-color="#16ff6a"/><stop offset="1" stop-color="#0090a5"/></linearGradient></defs><g transform="translate(151 -1135.362)"><rect width="48" height="48" x="-151" y="1135.362" fill="url(#b)" rx="10.144" ry="10.144"/><path style="line-height:normal;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;block-progression:tb;marker:none" fill="#fff" d="m -127,1145.6434 c 6.08628,0 11,4.797 11,10.75 0,2.8066 -2.80261,7.2815 -5.65625,10.9063 -2.67736,3.401 -5.02283,5.7389 -5.34375,6.0625 -0.32092,-0.3236 -2.66639,-2.6615 -5.34375,-6.0625 -2.85364,-3.6248 -5.65625,-8.0997 -5.65625,-10.9063 0,-5.953 4.91372,-10.75 11,-10.75 z m 0,4 c -3.86007,0 -7,3.1399 -7,7 0,3.86 3.13993,7 7,7 3.86007,0 7,-3.14 7,-7 0,-3.8601 -3.13993,-7 -7,-7 z m 0,1 c 3.31963,0 6,2.6803 6,6 0,3.3196 -2.68037,6 -6,6 -3.31963,0 -6,-2.6804 -6,-6 0,-3.3197 2.68037,-6 6,-6 z m 2.3125,3.6563 -3.21875,3.2187 -1.40625,-1.4062 -0.6875,0.6875 1.75,1.8125 0.375,0.3437 0.34375,-0.3437 3.53125,-3.5938 z" color="#000" font-family="Sans" font-weight="400" overflow="visible"/><path fill="none" d="m -129.99999,1164.3622 c 0,2.7614 -2.23858,5 -5.00001,5 -2.76143,0 -5.00001,-2.2386 -5.00001,-5 0,-2.7614 2.23858,-5 5.00001,-5 2.76143,0 5.00001,2.2386 5.00001,5 z" color="#000" overflow="visible"/></g></svg>
     </div>
@@ -68,18 +69,18 @@
 
   <div class="flex-1 flex flex-col">
     <!-- section body top nav -->
-    <nav aria-label="top bar" class="flex-none flex justify-between bg-white h-16">
+    <nav aria-label="top bar" class="flex-none flex justify-between h-16" :class="$auth.$state.user.isChecked === 'true' ? 'bg-gray-900' : 'bg-white'">
       <!-- top bar left -->
       <ul aria-label="top bar left" aria-orientation="horizontal" class="flex">
         <!-- add button -->
         <li class="group relative">
           <button aria-controls="add" aria-expanded="false" aria-haspopup="listbox" class="flex items-center h-full px-4 text-sm">
             <i>
-              <svg class="fill-current w-3 h-3 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <svg class="fill-current w-3 h-3 mx-auto"  :class="$auth.$state.user.isChecked === 'true' ? 'text-white' : 'text-black'" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                 <path d="M24 10h-10v-10h-2v10h-10v2h10v10h2v-10h10z" />
               </svg>
             </i>
-            <span class="ml-2">Add</span>
+            <span class="ml-2" :class="$auth.$state.user.isChecked === 'true' ? 'text-white' : 'text-black'">Add</span>
           </button>
           <span class="absolute p-1 hidden group-hover:block">
             <ul id="add" role="listbox" class="outline-none py-2 bg-white border rounded-md w-screen max-w-md w-dropdown-large shadow-lg focus:outline-none leading-relaxed">
@@ -106,10 +107,10 @@
         </li>
 
         <li class="h-8 w-8 ml-3">
-          <button title="Notifications" aria-label="notifications" class="w-full h-full text-white rounded-md focus:outline-none focus:shadow-outline">
+          <button title="Notifications" aria-label="notifications" class="w-full h-full text-white rounded-md focus:outline-none focus:shadow-outline" >
             <nuxt-link to="/Notifications" class="">
                  <i class="text-gray-600">
-              <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <svg class="fill-current w-4 h-4 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="$auth.$state.user.isChecked === 'true' ? 'text-white' : ''" >
                 <path d="M15.137 3.945c-.644-.374-1.042-1.07-1.041-1.82v-.003c.001-1.172-.938-2.122-2.096-2.122s-2.097.95-2.097 2.122v.003c.001.751-.396 1.446-1.041 1.82-4.667 2.712-1.985 11.715-6.862 13.306v1.749h20v-1.749c-4.877-1.591-2.195-10.594-6.863-13.306zm-3.137-2.945c.552 0 1 .449 1 1 0 .552-.448 1-1 1s-1-.448-1-1c0-.551.448-1 1-1zm3 20c0 1.598-1.392 3-2.971 3s-3.029-1.402-3.029-3h6z" />
               </svg>
             </i>
@@ -121,7 +122,7 @@
           <button title="Products" aria-label="products" class="w-full h-full rounded-md focus:outline-none focus:shadow-outline">
             <nuxt-link to="/products">
             <i class="text-gray-600">
-              <svg class="fill-current w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <svg class="fill-current w-5 h-5 mx-auto" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" :class="$auth.$state.user.isChecked === 'true' ? 'text-white' : ''">
                 <path d="M11 11h-11v-11h11v11zm13 0h-11v-11h11v11zm-13 13h-11v-11h11v11zm13 0h-11v-11h11v11z" />
               </svg>
             </i>
@@ -132,14 +133,14 @@
 
         <li class="h-10 w-10 ml-3">
           <button :title="$auth.$state.user.Email" aria-label="page menu" class="h-full w-full rounded-full border focus:outline-none focus:shadow-outline">
-            <img class="h-full w-full rounded-full mx-auto border-2 border-blue-600" :src="$auth.$state.user.Blogo" />
+            <img class="h-full w-full rounded-full mx-auto border-2" :src="$auth.$state.user.Blogo" :class="$auth.$state.user.isChecked === 'true' ? 'border-white' : 'border-blue-600'" />
           </button>
         </li>
       </ul>
     </nav>
 
     <!-- section body header -->
-    <header aria-label="page caption" class="flex-none flex h-16 bg-gray-100 border-t px-4 items-center">
+    <header aria-label="page caption" class="flex-none flex h-16  border-t px-4 items-center" :class="$auth.$state.user.isChecked === 'true' ? 'bg-gray-400' : 'bg-gray-100'">
       <h1 v-if="$nuxt.$route.name == 'home'" id="page-caption" class="font-semibold text-lg">Dashboard</h1>
       <h1 v-if="$nuxt.$route.path == '/Account/SocialAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Social settings</h1>
       <h1 v-if="$nuxt.$route.path == '/Account/BusinessAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Business settings</h1>

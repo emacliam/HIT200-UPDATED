@@ -36,6 +36,7 @@ const GalleryRoute = require('./routes/Images')
 const ReportRoute = require('./routes/Reports');
 const mapRoute = require('./routes/map');
 const StatsRoute = require('./routes/statistics');
+const SettingsRoute = require('./routes/settings');
 
 app.use('/api', applyBusiness)
 app.use('/api', accessCodes)
@@ -46,6 +47,7 @@ app.use('/api', GalleryRoute)
 app.use('/api', ReportRoute)
 app.use('/api', mapRoute)
 app.use('/api', StatsRoute)
+app.use('/api', SettingsRoute)
 
 app.listen(3000, (err) => {
     if (err) {
