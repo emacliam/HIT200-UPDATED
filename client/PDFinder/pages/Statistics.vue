@@ -1,10 +1,24 @@
 <template>
   <main class="flex">
 
-      <div>
-<div>
-    Graph
+      <div class="flex-grow border-gray-200 border rounded-lg p-2 mt-8 ml-8 mr-8">
+<div class="w-full">
+    <span class="border p-2 rounded font-bold w-36">
+Product Upload Graph
+    </span>
 
+  <div class="">
+ <chartjs-line
+    :beginzero="beginZero"
+    :datalabel ="datalabel"
+    :labels="dates"
+    :data ="results"
+    :fill="fill"
+    :backgroundcolor="bgColor"
+    :bordercolor = "borderColor"
+
+    />
+    </div>
     <div>
         <span>
             Total Number of Products:
@@ -15,21 +29,21 @@
     </div>
 </div>
       </div>
-<div class="relative w-1/2 m-8">
+<div class="relative m-8 overflow-y-scroll border border-gray-200 rounded-lg pt-2 pl-1" style="width:20rem;">
 <h2 class="uppercase text-teal-600 mb-8 font-bold">Product Timeline</h2>
 <hr class="mb-3">
-            <div class="border-r-2 border-gray-200 border-dotted absolute h-full top-0 z-0" style="left: 7px"></div>
-            <ul class="list-none m-0 p-0" v-for="dates in dates" :key="dates">
-                <li class="mb-2">
+          <!-- <div class="border-l-4 border-black border-dotted h-full absolute top-0 z-0 mt-24" style="left: 7px"></div> -->
+            <ul class="list-none m-0 p-0" v-for="date in dates" :key="date">
+                <li class="">
                     <div class="flex items-center mb-1">
-                        <div class="bg-indigo-600 rounded-full h-4 w-4 border-gray-200 border-2 z-10">
+                        <div class="rounded-lg border-teal-200 border-2 z-10">
+                            {{date}}
                         </div>
-                        <div class="flex-1 ml-4 font-medium">{{dates}}</div>
                     </div>
-                    <div class="ml-12" v-for="product in products" :key="product._id">
-                        <nuxt-link  :to="`/products/${product._id}`"  v-if="dates === product.date" class="bg-teal-600 rounded-lg px-8 py-1 mb-4 w-48 cursor-pointer">
+                    <div class="ml-24 border-l-2 border-gray-500 w-auto" v-for="product in products" :key="product._id">
+                        <div  @click="timeline(product._id)" v-if="date === product.date" class="bg-teal-600 rounded-lg px-1 w-auto h-6 m-2 cursor-pointer">
                             {{product.name}}
-                        </nuxt-link>
+                        </div>
                     </div>
                 </li>
             </ul>
@@ -41,7 +55,14 @@
 export default {
     data() {
         return {
-            TotalProducts:''
+            TotalProducts:'',
+            beginZero: true,
+            datalabel:"Products",
+            dates:'',
+            results:'',
+            fill:true,
+            bgColor: "teal",
+            borderColor:"#3f51b5"
         }
     },
     async asyncData({ $axios }){
@@ -56,11 +77,18 @@ const TotalProducts = productResponse.products.length
 
  return {
     dates: Object.keys(DatesResponse.result),
+    results:Object.values(DatesResponse.result),
     products: productResponse.products,
     total: TotalProducts
   }
 
-    }
+    },
+    methods: {
+        timeline(id){
+            this.$router.push(`/products/${id}`)
+        }
+
+    },
 
 }
 </script>

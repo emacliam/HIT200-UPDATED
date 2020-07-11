@@ -181,7 +181,7 @@ router.put('/auth/user', verifyToken, async(req, res) => {
             if (req.body.Email2) foundUser.Email2 = req.body.Email2
             if (req.body.Facebook) foundUser.Bemail = req.body.Facebook
             if (req.body.Twitter) foundUser.Twitter = req.body.Twitter
-            if (req.body.Whatspp) foundUser.Whatspp = req.body.Whatspp
+            if (req.body.Whatsapp) foundUser.Whatsapp = req.body.Whatsapp
             if (req.body.Phone) foundUser.Phone = req.body.Phone
             if (req.body.Other) foundUser.Other = req.body.Other
 

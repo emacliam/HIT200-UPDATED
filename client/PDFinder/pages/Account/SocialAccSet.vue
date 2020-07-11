@@ -69,6 +69,7 @@ async asyncData({ $axios }){
 },
 methods: {
     async send(){
+         this.$nuxt.$loading.start()
         let data = {
         Email1:this.Email1,
         Email2:this.Email2,
@@ -80,10 +81,12 @@ methods: {
     }
  let response = await this.$axios.$put('/api/auth/user',data)
  if(response.success){
+   this.$nuxt.$loading.finish()
    await this.$auth.fetchUser();
-   this.$toast.success('Social details saved').goAway(1000);
+   this.$toast.success('Social details saved').goAway(2000);
  }else{
-    this.$toast.error('Something happened try again later ').goAway(1000)
+    this.$nuxt.$loading.finish()
+    this.$toast.error('Something happened try again later ').goAway(2000)
  }
     }
 },

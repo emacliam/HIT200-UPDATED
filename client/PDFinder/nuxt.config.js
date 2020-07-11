@@ -29,9 +29,12 @@ export default {
      ** https://nuxtjs.org/guide/plugins
      */
     plugins: [{
-        src: '~plugins/vue-js-modal.js',
-        mode: 'client'
-    }],
+            src: "~plugins/vue-js-modal.js",
+            ssr: false
+        },
+        { src: "~plugins/chart.js", ssr: false },
+        { src: "~plugins/hchs-vue-charts.js", ssr: false }
+    ],
     loading: '~/components/loading.vue',
     /*
      ** Nuxt.js dev-modules

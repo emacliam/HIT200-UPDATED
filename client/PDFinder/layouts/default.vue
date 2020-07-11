@@ -4,7 +4,7 @@
   <!-- section body side nav -->
   <nav aria-label="side bar" aria-orientation="vertical" class="flex-none flex flex-col items-center text-center bg-teal-900 text-gray-400 border-r">
     <div class="h-16 flex items-center w-full">
-      <img class="h-6 w-6 mx-auto" src="https://raw.githubusercontent.com/bluebrown/tailwind-zendesk-clone/master/public/assets/leaves.png" />
+      <svg class="h-12 w-12 mx-auto" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="8" height="8"><defs><linearGradient id="b" x1="1073.403" x2="1097.116" y1="516.451" y2="544.308" gradientTransform="translate(-1794.872 342.343) scale(1.53785)" gradientUnits="userSpaceOnUse" xlink:href="#a"/><linearGradient id="a"><stop offset="0" stop-color="#16ff6a"/><stop offset="1" stop-color="#0090a5"/></linearGradient></defs><g transform="translate(151 -1135.362)"><rect width="48" height="48" x="-151" y="1135.362" fill="url(#b)" rx="10.144" ry="10.144"/><path style="line-height:normal;-inkscape-font-specification:Sans;text-indent:0;text-align:start;text-decoration-line:none;text-transform:none;block-progression:tb;marker:none" fill="#fff" d="m -127,1145.6434 c 6.08628,0 11,4.797 11,10.75 0,2.8066 -2.80261,7.2815 -5.65625,10.9063 -2.67736,3.401 -5.02283,5.7389 -5.34375,6.0625 -0.32092,-0.3236 -2.66639,-2.6615 -5.34375,-6.0625 -2.85364,-3.6248 -5.65625,-8.0997 -5.65625,-10.9063 0,-5.953 4.91372,-10.75 11,-10.75 z m 0,4 c -3.86007,0 -7,3.1399 -7,7 0,3.86 3.13993,7 7,7 3.86007,0 7,-3.14 7,-7 0,-3.8601 -3.13993,-7 -7,-7 z m 0,1 c 3.31963,0 6,2.6803 6,6 0,3.3196 -2.68037,6 -6,6 -3.31963,0 -6,-2.6804 -6,-6 0,-3.3197 2.68037,-6 6,-6 z m 2.3125,3.6563 -3.21875,3.2187 -1.40625,-1.4062 -0.6875,0.6875 1.75,1.8125 0.375,0.3437 0.34375,-0.3437 3.53125,-3.5938 z" color="#000" font-family="Sans" font-weight="400" overflow="visible"/><path fill="none" d="m -129.99999,1164.3622 c 0,2.7614 -2.23858,5 -5.00001,5 -2.76143,0 -5.00001,-2.2386 -5.00001,-5 0,-2.7614 2.23858,-5 5.00001,-5 2.76143,0 5.00001,2.2386 5.00001,5 z" color="#000" overflow="visible"/></g></svg>
     </div>
 
     <ul>
@@ -53,11 +53,17 @@
           </i>
         </nuxt-link>
       </li>
+      <li>
+        <div title="Logout" class="h-16 px-6 flex items-center hover:text-white w-full">
+           <a href="#" @click="onLogout" class="text-white w-full hover:text-red-800 rounded-full bg-red-400 flex items-center p-1" style="text-decoration:none">
+    <svg xmlns="http://www.w3.org/2000/svg" class="fill-current h-6 w-6 stroke-current" width="28" height="28" viewBox="0 0 64 64">
+    <path d="M32,52.72A20.43,20.43,0,0,1,17.87,17.55a1,1,0,0,1,1.42,0,1,1,0,0,1,0,1.41,18.42,18.42,0,1,0,25.48,0,1,1,0,0,1,0-1.41,1,1,0,0,1,1.42,0A20.43,20.43,0,0,1,32,52.72Z"/>
+    <path d="M32,34a1,1,0,0,1-1-1V12.28a1,1,0,0,1,2,0V33A1,1,0,0,1,32,34Z"/>
+    </svg>
+    </a>
+        </div>
+      </li>
     </ul>
-
-    <div class="mt-auto h-16 flex items-center w-full p-1">
-    <a href="#" @click="onLogout" class="bg-teal-800 h-8 p-1 rounded text-white w-full hover:bg-red-800" style="text-decoration:none">Logout</a>
-    </div>
   </nav>
 
   <div class="flex-1 flex flex-col">

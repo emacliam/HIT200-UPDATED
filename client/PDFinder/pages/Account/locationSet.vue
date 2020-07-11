@@ -117,6 +117,7 @@ export default {
   },
   methods: {
     async send() {
+       this.$nuxt.$loading.start()
     let data = {
     Aline1:this.Aline1,
     Aline2:this.Aline2,
@@ -129,10 +130,12 @@ export default {
     console.log(response);
     if(response.success){
       await this.$auth.fetchUser();
-      this.$toast.success('Changes saved').goAway(1000);
+       this.$nuxt.$loading.finish()
+      this.$toast.success('Changes saved').goAway(2000);
 
     }else{
-        this.$toast.error("something went wrong").goAway(1000);
+       this.$nuxt.$loading.finish()
+        this.$toast.error("something went wrong").goAway(2000);
     }
 
     },

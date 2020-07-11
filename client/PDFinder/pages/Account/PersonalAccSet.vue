@@ -63,6 +63,7 @@ Account
   },
   methods: {
     async send() {
+    this.$nuxt.$loading.start()
     console.log(this.selectedFile)
     let data = {
     Fname:this.Fname,
@@ -74,11 +75,13 @@ Account
   let response = await this.$axios.$put("/api/auth/user", data);
     console.log(response);
     if(response.success){
+      this.$nuxt.$loading.finish()
       await this.$auth.fetchUser();
-      this.$toast.success('Changes saved').goAway(1000);
+      this.$toast.success('Changes saved').goAway(2000);
 
     }else{
-        this.$toast.error("something went wrong").goAway(1000);
+        this.$nuxt.$loading.finish()
+        this.$toast.error("something went wrong").goAway(2000);
     }
 
     }
