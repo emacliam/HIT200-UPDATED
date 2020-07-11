@@ -42,7 +42,7 @@ Product Upload Graph
                         <span class="mx-2 rounded-full h-6 w-6 justify-center flex items-center bg-red-400 text-white font-bold">{{results[index]}}</span>
                     </div>
                     <div class="ml-24 border-l-2 border-gray-500 w-auto" v-for="product in products" :key="product._id">
-                        <div  @click="timeline(product._id)" v-if="date === product.date" class="bg-teal-600 rounded-lg px-1 w-auto h-6 m-2 cursor-pointer">
+                        <div  @click="timeline(product._id)" v-if="date === product.date" class="bg-teal-600 text-white rounded-lg px-1 w-auto h-6 m-2 cursor-pointer">
                             {{product.name}}
                         </div>
                     </div>
