@@ -36,7 +36,7 @@ Product Upload Graph
             <ul class="list-none m-0 p-0" v-for="(date, index) in dates" :key="date">
                 <li class="">
                     <div class="flex items-center mb-1">
-                        <div class="rounded-lg border-teal-200 border-2 z-10">
+                        <div class="rounded-lg border-teal-200 border-2 z-10 px-1">
                             {{date}}
                         </div>
                         <span class="mx-2 rounded-full h-6 w-6 justify-center flex items-center bg-red-400 text-white font-bold">{{results[index]}}</span>
