@@ -1,7 +1,7 @@
 <template>
   <main class="flex">
 
-      <div class="flex-grow border-gray-200 border rounded-lg p-2 mt-8 ml-8 mr-8">
+      <div class="flex-grow border-gray-400 border rounded-lg p-2 mt-8 ml-8 mr-8">
 <div class="w-full">
     <span class="border p-2 rounded font-bold w-36">
 Product Upload Graph
@@ -29,7 +29,7 @@ Product Upload Graph
     </div>
 </div>
       </div>
-<div class="relative m-8 overflow-y-scroll border border-gray-200 rounded-lg pt-2 pl-1" style="width:20rem;">
+<div class="relative m-8 overflow-y-scroll border border-gray-400 rounded-lg pt-2 pl-1" style="width:20rem;">
 <h2 class="uppercase text-teal-600 mb-8 font-bold">Product Timeline</h2>
 <hr class="mb-3">
           <!-- <div class="border-l-4 border-black border-dotted h-full absolute top-0 z-0 mt-24" style="left: 7px"></div> -->
@@ -62,8 +62,8 @@ export default {
             dates:'',
             results:'',
             fill:true,
-            bgColor: "teal",
-            borderColor:"#3f51b5"
+            bgColor: "#f0e9e9",
+            borderColor:"#f08181"
         }
     },
     async asyncData({ $axios }){
