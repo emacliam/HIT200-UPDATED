@@ -42,6 +42,10 @@ const UserSchema = new Schema({
     isChecked: {
         type: String,
         default: false
+    },
+    isLayout: {
+        type: String,
+        default: false
     }
 
 })

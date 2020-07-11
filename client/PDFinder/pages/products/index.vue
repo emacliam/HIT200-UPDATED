@@ -30,7 +30,7 @@
 
                     </div>
 
-                    <div class="flex flex-col mt-8">
+                    <template v-if="$auth.$state.user.isLayout === 'true'" class="flex flex-col mt-8">
                         <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8">
                             <div class="align-middle inline-block min-w-full shadow sm:rounded-lg border-b border-teal-600">
                                 <table class="min-w-full">
@@ -79,7 +79,31 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
+                    </template>
+
+                    <template v-else-if="$auth.$state.user.isLayout === 'false'" class="w-screen">
+                        <div class="w-full flex flex-wrap">
+                             <div v-for="(product, index) in products" :key="product._id"  class="flex flex-wrap w-56 ">
+                            <div class="flex flex-col w-auto m-2 items-center border p-2 border-gray-500 rounded-lg bg-white">
+                                <img class="h-36 w-36 rounded-lg" :src="product.photo" alt="" />
+                            <div class="m-4">
+                                  <div class="text-sm leading-5 font-medium text-gray-900">{{product.name}}</div>
+                                  <div class="text-sm leading-5 text-gray-500">{{product.type}}</div>
+                                  <div class="text-sm leading-5 text-gray-900">{{product.modal}}</div>
+                            </div>
+                            <div>
+                                  <nuxt-link :to="`/products/Edit/${product._id}`" class="text-indigo-600 hover:text-indigo-900 border-r-2 px-2 border-teal-600">Edit</nuxt-link>
+                                  <a href="#" @click="onDeleteProduct(product._id, index)" class="text-red-600 hover:text-indigo-900 px-2 border-r-2 border-teal-600">Delete</a>
+                                  <nuxt-link :to="`/products/${product._id}`" title="more" class="text-teal-800 hover:text-indigo-900 px-2">More..</nuxt-link>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
+
+                    </template>
+
+
+
                 </div>
             </main>
         </div>
