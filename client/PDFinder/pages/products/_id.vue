@@ -12,7 +12,7 @@
       <div class="flex flex-col items-center">
  <img class="h-24 w-24  object-cover rounded-full border border-teal-600 pb-5/6" :src="product.photo">
     <label class=" flex flex-col items-center p-1 text-blue uppercase cursor-pointer hover:text-teal-600">
-        <span class="leading-normal text-sm">Upload Photo</span>
+        <span class="leading-normal text-sm rounded-lg border p-1">Upload Photo</span>
         <input type='file' class="hidden" @change="onPhoto" />
     </label>
 
@@ -22,7 +22,7 @@
   <br>
  <span>Star rating here</span>
  <br>
- <span class="text-gray-500 text-sm">Added on Date</span>
+ <span class="text-gray-500 text-sm">Added on Date: <span class="rounded-lg text-white bg-teal-500 px-2">{{product.date}}</span></span>
       </div>
 
 
