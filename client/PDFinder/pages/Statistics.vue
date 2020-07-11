@@ -33,12 +33,13 @@ Product Upload Graph
 <h2 class="uppercase text-teal-600 mb-8 font-bold">Product Timeline</h2>
 <hr class="mb-3">
           <!-- <div class="border-l-4 border-black border-dotted h-full absolute top-0 z-0 mt-24" style="left: 7px"></div> -->
-            <ul class="list-none m-0 p-0" v-for="date in dates" :key="date">
+            <ul class="list-none m-0 p-0" v-for="(date, index) in dates" :key="date">
                 <li class="">
                     <div class="flex items-center mb-1">
                         <div class="rounded-lg border-teal-200 border-2 z-10">
                             {{date}}
                         </div>
+                        <span class="mx-2 rounded-full h-6 w-6 justify-center flex items-center bg-red-400 text-white font-bold">{{results[index]}}</span>
                     </div>
                     <div class="ml-24 border-l-2 border-gray-500 w-auto" v-for="product in products" :key="product._id">
                         <div  @click="timeline(product._id)" v-if="date === product.date" class="bg-teal-600 rounded-lg px-1 w-auto h-6 m-2 cursor-pointer">
