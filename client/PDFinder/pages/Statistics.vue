@@ -8,7 +8,8 @@ Product Upload Graph
     </span>
 
   <div class="">
- <chartjs-line
+      <template v-if="$auth.$state.user.isGraph === 'false'">
+          <chartjs-line
     :beginzero="beginZero"
     :datalabel ="datalabel"
     :labels="dates"
@@ -18,6 +19,21 @@ Product Upload Graph
     :bordercolor = "borderColor"
 
     />
+      </template >
+
+<template v-else-if="$auth.$state.user.isGraph === 'true'">
+    <chartjs-bar
+    :beginzero="beginZero"
+    :datalabel ="datalabel"
+    :labels="dates"
+    :data ="results"
+    :fill="fill"
+    :backgroundcolor="bgColor"
+    :bordercolor = "borderColor"
+
+    />
+</template>
+
     </div>
     <div>
         <span>
@@ -62,8 +78,8 @@ export default {
             dates:'',
             results:'',
             fill:true,
-            bgColor: "#f0e9e9",
-            borderColor:"#f08181"
+            bgColor: "gray",
+            borderColor:"teal"
         }
     },
     async asyncData({ $axios }){

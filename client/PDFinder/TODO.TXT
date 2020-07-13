@@ -9,8 +9,6 @@ COMMENTS- PER PRODUCT USING THE REF (
 IMPLEMENT THE VIEWED AND UNVIEWED COMMENTS
 IMPLEMENT RATINGS ON EACH PRODUCT(WE WILL HAVE A RATINGS SCHEMA)
 VALIDATION OF ALL FORMS USING VEE-VALIDATE IN NUXT
-add created on in the schema and add a timeline
 
 transforming routes in vuejs
 add notification when account is created and on payment due and on new messages/reviews(no messages if there are none)
-if image is null then show another image else show that image

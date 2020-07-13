@@ -42,6 +42,27 @@
   </span>
 </div>
         </div>
+
+          <div class="flex flex-col py-4">
+            <h2 class="text-teal-600 uppercase font-bold text-sm">Change Graph:</h2>
+<div class="flex justify-center items-center text-lg">
+<span class="m-1 flex items-center">
+      <span>Line Graph</span>
+</span>
+  <div class="relative rounded-full w-12 h-6 transition duration-200 ease-linear"
+       :class="[graph === 'true' ? 'bg-green-400' : 'bg-gray-400']">
+    <label for="graph"
+           class="absolute left-0 bg-white border-2 mb-2 w-6 h-6 rounded-full transition transform duration-100 ease-linear cursor-pointer"
+           :class="[graph === 'true' ? 'translate-x-full border-green-400' : 'translate-x-0 border-gray-400']"></label>
+    <input type="checkbox" id="graph" name="graph"
+           class="appearance-none w-full h-full active:outline-none focus:outline-none"
+           @click="graph === 'false' ? graph = 'true' : graph = 'false' " @change="graphval"/>
+  </div>
+  <span class="m-1 flex items-center">
+       <p>Bar Graph</p>
+  </span>
+</div>
+        </div>
         </div>
     </div>
     </div>
@@ -53,7 +74,8 @@ export default {
         return {
             isChecked:'',
             toggle:this.$auth.$state.user.isChecked,
-            layout:this.$auth.$state.user.isLayout
+            layout:this.$auth.$state.user.isLayout,
+            graph:this.$auth.$state.user.isGraph
         }
     },
     methods: {
@@ -75,6 +97,19 @@ if(response.success){
          this.$nuxt.$loading.start()
  let data = {
      isLayout: this.layout
+ }
+ console.log(data)
+const response = await this.$axios.$put('/api/auth/user',data);
+if(response.success){
+    await this.$auth.fetchUser();
+    this.$nuxt.$loading.finish()
+}
+},
+
+ async  graphval(){
+         this.$nuxt.$loading.start()
+ let data = {
+     isGraph: this.graph
  }
  console.log(data)
 const response = await this.$axios.$put('/api/auth/user',data);

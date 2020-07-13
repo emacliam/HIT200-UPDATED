@@ -33,7 +33,8 @@ export default {
             ssr: false
         },
         { src: "~plugins/chart.js", ssr: false },
-        { src: "~plugins/hchs-vue-charts.js", ssr: false }
+        { src: "~plugins/hchs-vue-charts.js", ssr: false },
+        "~/plugins/vee-validate.js"
     ],
     loading: '~/components/loading.vue',
     /*
@@ -78,7 +79,11 @@ export default {
      ** See https://nuxtjs.org/api/configuration-build/
      */
     build: {
-
+        transpile: ["vee-validate/dist/rules"],
+        /*
+         ** You can extend webpack config here
+         */
+        extend(config, ctx) {}
     },
     auth: {
         strategies: {

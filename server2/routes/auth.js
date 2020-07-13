@@ -188,6 +188,7 @@ router.put('/auth/user', verifyToken, async(req, res) => {
 
             if (req.body.isChecked) foundUser.isChecked = req.body.isChecked
             if (req.body.isLayout) foundUser.isLayout = req.body.isLayout
+            if (req.body.isGraph) foundUser.isGraph = req.body.isGraph
 
             const response = await foundUser.save()
             console.log(response)

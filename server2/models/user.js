@@ -46,6 +46,10 @@ const UserSchema = new Schema({
     isLayout: {
         type: String,
         default: false
+    },
+    isGraph: {
+        type: String,
+        default: false
     }
 
 })
