@@ -18,7 +18,10 @@
                                     </div>
 
                                     <div class="mx-5">
-                                        <h4 class="text-2xl font-semibold text-gray-700">{{products.length}}</h4>
+                                      <div>
+                                        <h4 class="text-2xl font-semibold text-gray-700" >{{ CountProducts }}</h4>
+
+                                      </div>
                                         <div class="text-gray-500">Available Products</div>
                                     </div>
                                 </div>
@@ -99,10 +102,10 @@
                                     </tr>
                                     </thead>
 
-                                    <tbody class="bg-white" v-for="(product, index) in filteredProducts" :key="product._id">
+                                    <tbody class="bg-white" v-for="(product, index) in filteredProducts" :key="product._id" >
                                         <!-- v-if="product.owner._id === $auth.$state.user._id" -->
 
-                                    <tr >
+                                    <tr v-if="product.owner._id === $auth.$state.user._id">
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
@@ -120,7 +123,11 @@
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{ product.price }}</span>
+                                          <div>
+                                            <span class="">$</span>
+                                             <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">{{ product.price }}</span>
+                                          </div>
+
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200 text-sm leading-5 text-gray-500"></td>
@@ -139,8 +146,8 @@
 
                     <template v-else-if="$auth.$state.user.isLayout === 'false'" class="w-screen">
                         <div class="w-full flex flex-wrap">
-                             <div v-for="(product, index) in filteredProducts" :key="product._id"  class="flex flex-wrap w-56 ">
-                            <div class="flex flex-col w-auto m-2 items-center border p-2 border-gray-500 rounded-lg bg-white">
+                             <div v-for="(product, index) in filteredProducts" :key="product._id"  class="flex flex-wrap w-56">
+                            <div class="flex flex-col w-auto m-2 items-center border p-2 border-gray-500 rounded-lg bg-white" v-if="product.owner._id === $auth.$state.user._id">
                                 <img class="h-36 w-36 rounded-lg" :src="product.imageUrl" alt="" />
                             <div class="m-4">
                                   <div class="text-sm leading-5 font-medium text-gray-900">{{product.name}}</div>
@@ -172,15 +179,17 @@ export default {
             value:'',
             search:'',
             property:'',
-            order:''
+            order:'',
+            count:''
         }
     },
   // async data is fetching data before loading page
   async asyncData ({ $axios }) {
     try {
-      const response = await $axios.$get('/api/products')
+      const response = await $axios.$get('/api/products');
+      const prod = response.products
       return {
-        products: response.products
+        products: prod
       }
     } catch (err) {
     }
@@ -268,6 +277,16 @@ export default {
     return this.products.filter((blog)=>{
      return blog.name.match(this.search)
     })
+  },
+ CountProducts: function(){
+   let count = 0;
+   this.products.forEach(element => {
+      if(this.$auth.$state.user._id === element.owner._id){
+       count++
+      }
+      return count
+    });
+    return count
   }
 }
 }

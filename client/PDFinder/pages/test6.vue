@@ -14,28 +14,47 @@
 </ValidationObserver>
 
 <span class="cursor-pointer border rounded-lg bg-blue-500 text-white px-8 py-2" @click="ext" :disabled="errors.any()">Send</span> -->
-<ValidationObserver v-slot="{ invalid }">
-  <form @submit.prevent="submit">
-    <InputWithValidation rules="required" v-model="first" :error-messages="errors" />
+  <ValidationObserver ref="observer" v-slot="{ invalid }" tag="form" @submit.prevent="submit()">
+    <input rules="required" v-model="first" :error-messages="errors" class="bg-blue-600" />
 
-    <InputWithValidation rules="required" v-model="second" :error-messages="errors" />
+    <input rules="required" v-model="second" :error-messages="errors" class="bg-blue-600" />
 
-    <v-btn :disabled="invalid">Submit</v-btn>
-  </form>
-</ValidationObserver>
+    <button :disabled="invalid">Submit</button>
+  </ValidationObserver>
+  <ValidationProvider
+          v-slot="{ errors }"
+          name="Username"
+          rules="required">
+          <b-form-group id="input-group-4"
+                        label="Username:"
+                        label-for="input-4">
+            <input
+              id="input-4"
+              v-model="username"
+              required
+              placeholder="Please enter a username"
+            />
+            <span class="input-invalid-message">
+              {{ errors[0] }}
+            </span>
+          </b-form-group>
+</ValidationProvider>
 
   </section>
 </template>
 
 <script>
-import { ValidationProvider } from "vee-validate";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 
 export default {
   components: {
-    ValidationProvider
+    ValidationProvider,
+    ValidationObserver
   },
   data: () => ({
     value: "",
+    first:'',
+    second:''
   }),
   methods: {
       ext(){

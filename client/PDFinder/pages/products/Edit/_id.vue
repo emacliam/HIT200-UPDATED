@@ -47,16 +47,15 @@
                     <div
                       class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
                     >
-                      <input
-                        :placeholder="product.category"
-                        class="p-1 px-2 appearance-none outline-none font-medium w-full text-gray-800 placeholder-black"
-                        v-model="category"
-
-                      />
+                      <select  class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="category">
+                        <option v-for="category in categories" :key="category._id" class="flex" :value="category.name">
+                          <span class="w-16">{{category.name}}</span>
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
-<!--  2 -->
+<!-- 2 -->
                 <div class="">
                   <div class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
@@ -135,15 +134,33 @@
             </div>
    </main>
 </template>
+ let response =  $axios.$get("/api/countries");
+      let Singleaddress = $axios.$get(`/api/addresses/${ params.id }`);
 
+      let [countriesResponse, addressResponse] = await Promise.all([
+        response,
+        Singleaddress
+      ])
+
+      return {
+        countries: countriesResponse,
+        address: addressResponse.address
+      };
 <script>
 export default {
   async asyncData ({ $axios, params }) {
     try {
-      const response = await $axios.$get(`http://localhost:3000/api/products/${params.id}`)
-      console.log(response.product[0])
+      const response = await $axios.$get(`/api/products/${params.id}`)
+      const categories = await $axios.$get('/api/categories');
+
+       let [productResponse, categoriesResponse] = await Promise.all([
+        response,
+        categories
+      ])
+      categories: response.categories
       return {
-        product: response.product[0]
+        product: productResponse.product[0],
+        categories: categoriesResponse.categories
       }
     } catch (error) {
       console.log(error)

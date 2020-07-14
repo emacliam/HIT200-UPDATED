@@ -20,7 +20,20 @@
       <div class="ml-8">
  <h2 class="text-xl text-gray-800 font-medium mr-auto">{{product.name}}</h2>
   <br>
- <span>Star rating here</span>
+
+ <!-- Rating -->
+             <no-ssr>
+                                <star-rating
+                                  :rating="product.rating"
+                                  :show-rating="false"
+                                  :glow="1"
+                                  :border-width="1"
+                                  :rounded-corners="true"
+                                  :read-only="true"
+                                  :star-size="16"
+                                  :star-points="[23,2,14,17,0,19,10,34,7,50,23,43,38,50,36,34,46,19,31,17]"
+                                ></star-rating>
+                </no-ssr>
  <br>
  <span class="text-gray-500 text-sm">Added on Date: <span class="rounded-lg text-white bg-teal-500 px-2">{{product.date}}</span></span>
       </div>
@@ -148,8 +161,11 @@
 </template>
 
 <script>
+import StarRating from 'vue-star-rating'
 export default {
-
+components:{
+StarRating
+},
   data () {
     return {
       product:{},
@@ -162,6 +178,7 @@ export default {
       selectedFile: null,
       stockQuantity: '',
       fileName: '',
+      rating:''
     }
   },
     async asyncData ({ $axios, params }) {

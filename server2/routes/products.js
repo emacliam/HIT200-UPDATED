@@ -99,24 +99,43 @@ router.get('/products', async(req, res) => {
 
 // get request - get single product
 router.get('/products/:id', async(req, res) => {
-    try {
-        const product = await Product.find({ _id: req.params.id }).populate('owner')
-            // for rating and reviews
-            /*  .populate("reviews", "rating") */
-            .exec()
-        res.json({
-            success: true,
-            product: product
-        })
-    } catch (err) {
-        res.status(500).json({
-            success: false,
-            message: err.message
-        })
-    }
-})
+        try {
+            const product = await Product.find({ _id: req.params.id }).populate('owner')
+                // for rating and reviews
+                /*  .populate("reviews", "rating") */
+                .exec()
+            res.json({
+                success: true,
+                product: product
+            })
+        } catch (err) {
+            res.status(500).json({
+                success: false,
+                message: err.message
+            })
+        }
+    })
+    /*
+    // get specific product for current user
+    router.get('/spec', verifyToken, async(req, res) => {
+        try {
+            const products = await Product.find({ owner: req.decoded._id })
+            console.log(products)
+            res.json({
+                success: true,
+                products: products
+            })
+        } catch (err) {
+            console.log(err)
+            res.status(500).json({
+                success: false,
+                message: err.message
+            })
+        }
+    })
 
-// put request - update product
+     */
+    // put request - update product
 router.put('/products/:id', async(req, res) => {
     try {
         const product = await Product.findOne({ _id: req.params.id })

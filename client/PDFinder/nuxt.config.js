@@ -34,8 +34,16 @@ export default {
         },
         { src: "~plugins/chart.js", ssr: false },
         { src: "~plugins/hchs-vue-charts.js", ssr: false },
-        "~/plugins/vee-validate.js"
+        "~/plugins/vee-validate.js",
     ],
+    nuxtValidate: {
+        lang: 'es',
+        nuxti18n: {
+            locale: {
+                'zh-CN': 'zh_CN'
+            }
+        }
+    },
     loading: '~/components/loading.vue',
     /*
      ** Nuxt.js dev-modules
@@ -54,6 +62,7 @@ export default {
         // Doc: https://github.com/nuxt/content
         '@nuxtjs/auth',
         '@nuxtjs/toast',
+        'nuxt-validate'
 
     ],
 
@@ -80,6 +89,7 @@ export default {
      */
     build: {
         transpile: ["vee-validate/dist/rules"],
+
         /*
          ** You can extend webpack config here
          */

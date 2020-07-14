@@ -36,8 +36,14 @@ const StoreSchema = new Schema({
     Phone: String,
     Other: String,
 
-    Latitude: String,
-    Longitude: String,
+    Latitude: {
+        type: String,
+        default: ''
+    },
+    Longitude: {
+        type: String,
+        default: ''
+    },
     paymentmade: false,
     isChecked: {
         type: String,

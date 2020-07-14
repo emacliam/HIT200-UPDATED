@@ -38,8 +38,8 @@ Product Upload Graph
     <div>
         <span>
             Total Number of Products:
-            <span>
-                {{total}}
+            <span class="rounded bg-teal-600 text-white p-2">
+                {{TotalProducts}}
             </span>
         </span>
     </div>
@@ -52,7 +52,7 @@ Product Upload Graph
             <ul class="list-none m-0 p-0" v-for="(date, index) in dates" :key="date">
                 <li class="">
                     <div class="flex items-center mb-1">
-                        <div class="rounded-lg border-teal-200 border-2 z-10 px-1">
+                        <div class=" z-10 px-1">
                             {{date}}
                         </div>
                         <span class="mx-2 rounded-full h-6 w-6 justify-center flex items-center bg-red-400 text-white font-bold">{{results[index]}}</span>
@@ -72,6 +72,7 @@ Product Upload Graph
 export default {
     data() {
         return {
+            products:'',
             TotalProducts:'',
             beginZero: true,
             datalabel:"Products",
@@ -79,34 +80,42 @@ export default {
             results:'',
             fill:true,
             bgColor: "gray",
-            borderColor:"teal"
+            borderColor:"teal",
+            count:'',
         }
     },
     async asyncData({ $axios }){
-      const dates = $axios.$get('/api/stats');
-      const products = $axios.$get('/api/products');
-
-const [DatesResponse, productResponse] = await Promise.all([
-   dates,
-   products
- ])
-const TotalProducts = productResponse.products.length
-
+      const product = await $axios.$get('/api/stats');
+const total = product.products
  return {
-    dates: Object.keys(DatesResponse.result),
-    results:Object.values(DatesResponse.result),
-    products: productResponse.products,
-    total: TotalProducts
+     products: product.products,
+    dates: Object.keys(product.result),
+    results:Object.values(product.result),
+    TotalProducts: total.length
   }
 
     },
     methods: {
         timeline(id){
             this.$router.push(`/products/${id}`)
+        },
+        bla(){
+         /*    console.log(this.products[0].owner._id) */
         }
-
     },
-
+  computed: {
+ CountP: function(){
+   let count = 0;
+   this.products.forEach(element => {
+       console.log(element)
+      if(this.$auth.$state.user._id === element.owner._id){
+       count++
+      }
+      return count
+    });
+    return count
+  }
+}
 }
 </script>
 
