@@ -15,7 +15,7 @@ const ProductSchema = new Schema({
     size: String,
     gallery: {
         type: Array,
-        default: ['']
+        default: []
     },
     date: {
         type: String

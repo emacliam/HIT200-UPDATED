@@ -37,6 +37,7 @@ const ReportRoute = require('./routes/Reports');
 const mapRoute = require('./routes/map');
 const StatsRoute = require('./routes/statistics');
 const SettingsRoute = require('./routes/settings');
+const CategoryRoute = require('./routes/category');
 const index = require('./routes/index');
 
 
@@ -51,6 +52,9 @@ app.use('/api', ReportRoute)
 app.use('/api', mapRoute)
 app.use('/api', StatsRoute)
 app.use('/api', SettingsRoute)
+app.use('/api', CategoryRoute)
+
+
 
 const port = process.env.PORT || 8000;
 app.listen(port, (err) => {

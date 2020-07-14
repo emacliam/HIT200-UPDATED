@@ -39,12 +39,11 @@
                     <div
                       class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
                     >
-                      <input
-                        placeholder="Business Category"
-                        class="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                        v-model="category"
-
-                      />
+                      <select  class="p-1 px-2 appearance-none outline-none w-full text-gray-800" v-model="category">
+                        <option v-for="category in categories" :key="category._id" class="flex" :value="category.name">
+                          <span class="w-16">{{category.name}}</span>
+                        </option>
+                      </select>
                     </div>
                   </div>
                 </div>
@@ -145,6 +144,14 @@ export default {
       imagePreview: ''
 
     }
+  },
+  async asyncData({ $axios }){
+    const response = await $axios.$get('/api/categories');
+    console.log(response)
+    return{
+      categories: response.categories
+    }
+
   },
   methods: {
     async onAddProduct () {

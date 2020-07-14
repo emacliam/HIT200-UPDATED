@@ -23,12 +23,7 @@ cloudinary.config({
 // put request - update product
 router.put('/gallery/:id', async(req, res) => {
     const product = await Product.find({ _id: req.params.id })
-    if (product[0].gallery.length === 5) {
-        res.json({
-            success: 'limit',
-            message: 'upload limit reached'
-        })
-    } else {
+    if (product[0].gallery = [] || product[0].gallery.length < 5) {
         const upload = multer({ storage }).single('gallery')
         upload(req, res, function(err) {
             if (err) {
@@ -61,6 +56,12 @@ router.put('/gallery/:id', async(req, res) => {
                         updatedProduct: product
                     })
                 })
+        })
+    }
+    if (product[0].gallery.length === 5) {
+        res.json({
+            success: 'limit',
+            message: 'upload limit reached'
         })
     }
 })
