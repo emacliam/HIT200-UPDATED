@@ -336,23 +336,23 @@
           <Step4 />
           <div class="mt-8 flex items-center justify-center">
             <div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Business name:</span class="text-red-600">{{ form.Bname }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business category:</span class="text-red-600">{{ form.Bcategory }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business email:</span class="text-red-600">{{ form.Bemail }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business phone:</span class="text-red-600">{{ form.Bphone}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business type:</span class="text-red-600">{{ form.Btype}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">First name:</span class="text-red-600">{{form.Fname}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Last name:</span class="text-red-600">{{form.Lname}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Username:</span class="text-red-600">{{form.Username}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Business name:</span >{{ form.Bname }}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business category:</span >{{ form.Bcategory }}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business email:</span >{{ form.Bemail }}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business phone:</span >{{ form.Bphone}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business type:</span >{{ form.Btype}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">First name:</span >{{form.Fname}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Last name:</span >{{form.Lname}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Username:</span >{{form.Username}}</div>
             </div>
             <div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Email:</span class="text-red-600">{{form.Email}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address one:</span class="text-red-600">{{form.Aline1}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address two:</span class="text-red-600">{{form.Aline2}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">City:</span class="text-red-600">{{form.City}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">State:</span class="text-red-600">{{form.State}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Country:</span class="text-red-600">{{form.Country}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Zipcode:</span class="text-red-600">{{form.Zipcode}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Email:</span >{{form.Email}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address one:</span >{{form.Aline1}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address two:</span >{{form.Aline2}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">City:</span >{{form.City}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">State:</span >{{form.State}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Country:</span >{{form.Country}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Zipcode:</span >{{form.Zipcode}}</div>
           <div class="m-4"></div>
 
             </div>

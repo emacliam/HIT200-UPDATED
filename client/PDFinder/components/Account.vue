@@ -22,7 +22,7 @@
           </div>
         </div>
         <div class="border-b">
-          <nuxt-link to="/Account/LocationSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/LocationSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-teal-500">
               <svg
                 fill="none"
@@ -41,7 +41,7 @@
               <p class="text-xs text-gray-500">Add/Remove Location</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="/Account/BusinessAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/BusinessAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-teal-500">
               <svg
                 fill="none"
@@ -61,7 +61,7 @@
               <p class="text-xs text-gray-500">Billing,Edit/Remove Business Settings</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="/Account/PersonalAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/PersonalAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-teal-500">
               <svg
                 fill="none"
@@ -80,7 +80,7 @@
               <p class="text-xs text-gray-500">Email, profile, etc</p>
             </div>
           </nuxt-link>
-          <nuxt-link to="/Account/SocialAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
+          <nuxt-link to="/SocialAccSet" class="px-4 py-2 hover:bg-gray-100 flex">
             <div class="text-green-600">
               <svg
                 fill="none"

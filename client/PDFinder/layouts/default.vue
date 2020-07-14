@@ -30,7 +30,7 @@
         </nuxt-link>
       </li>
       <li>
-        <nuxt-link to="Account/PersonalAccSet" title="Account"  class="h-16 px-6 flex items-center hover:text-white w-full" :class="$nuxt.$route.name === 'PersonalAccSet' ? 'bg-teal-700' : ''" >
+        <nuxt-link to="/PersonalAccSet" title="Account"  class="h-16 px-6 flex items-center hover:text-white w-full" :class="$nuxt.$route.name === 'PersonalAccSet' ? 'bg-teal-700' : ''" >
           <i class="mx-auto">
             <svg class="fill-current h-5 w-5" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M19 7.001c0 3.865-3.134 7-7 7s-7-3.135-7-7c0-3.867 3.134-7.001 7-7.001s7 3.134 7 7.001zm-1.598 7.18c-1.506 1.137-3.374 1.82-5.402 1.82-2.03 0-3.899-.685-5.407-1.822-4.072 1.793-6.593 7.376-6.593 9.821h24c0-2.423-2.6-8.006-6.598-9.819z" />
@@ -144,10 +144,10 @@
     <!-- section body header -->
     <header aria-label="page caption" class="flex-none flex h-16  border-t px-4 items-center" :class="$auth.$state.user.isChecked === 'true' ? 'bg-gray-400' : 'bg-gray-100'">
       <h1 v-if="$nuxt.$route.name == 'home'" id="page-caption" class="font-semibold text-lg">Dashboard</h1>
-      <h1 v-if="$nuxt.$route.path == '/Account/SocialAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Social settings</h1>
-      <h1 v-if="$nuxt.$route.path == '/Account/BusinessAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Business settings</h1>
-      <h1 v-if="$nuxt.$route.path == '/Account/LocationSet'"  id="page-caption" class="font-semibold text-lg">Account > Location settings</h1>
-      <h1 v-if="$nuxt.$route.path == '/Account/PersonalAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Personal settings</h1>
+      <h1 v-if="$nuxt.$route.path == 'SocialAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Social settings</h1>
+      <h1 v-if="$nuxt.$route.path == 'BusinessAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Business settings</h1>
+      <h1 v-if="$nuxt.$route.path == 'LocationSet'"  id="page-caption" class="font-semibold text-lg">Account > Location settings</h1>
+      <h1 v-if="$nuxt.$route.path == 'PersonalAccSet'"  id="page-caption" class="font-semibold text-lg">Account > Personal settings</h1>
       <h1 v-if="$nuxt.$route.name == 'Settings'"  id="page-caption" class="font-semibold text-lg">Settings</h1>
       <h1 v-if="$nuxt.$route.name == 'Statistics'"  id="page-caption" class="font-semibold text-lg">Statistics</h1>
       <h1 v-if="$nuxt.$route.name == 'Reviews'"  id="page-caption" class="font-semibold text-lg">Reviews and Comments</h1>

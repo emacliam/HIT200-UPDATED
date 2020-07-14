@@ -103,7 +103,7 @@ export default {
         register: [ // Register custom toasts
             {
                 name: 'my-error',
-                message: 'Oops...Something went wrong',
+                message: 'Sorry Enter Location first',
                 options: {
                     type: 'error'
                 }

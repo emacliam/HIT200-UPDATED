@@ -1,7 +1,7 @@
 <template>
    <main class="max-w-screen">
             <div class="mt-8 p-8 max-w-xl border rounded-lg bg-gray-100 m-auto">
-              <div class="">
+              <form class="" @submit.prevent="handleSubmit(onSubmit)">
              <h2 class="uppercase font-bold">Add product</h2>
                 <div class="">
 
@@ -122,7 +122,7 @@
                             </span>
                         </div>
 
-              </div>
+              </form>
             </div>
    </main>
 </template>
@@ -157,7 +157,8 @@ export default {
     async onAddProduct () {
       try {
         if(this.$auth.$state.user.Latitude === ''){
-        this.$router.push("/Account/locationSet")
+          this.toast.error("Location need to be set First to proceed").goAway(2000)
+        this.$router.push("/locationSet")
         }else{
 
       this.$nuxt.$loading.start()
