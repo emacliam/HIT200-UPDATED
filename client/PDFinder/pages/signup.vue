@@ -87,7 +87,19 @@
                       </select>
                     </div>
                   </div>
+                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                    <div
+                      class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
+                    >Company Logo(optional)</div>
+    <div class="flex items-center mt-4">
+      <label class="w-48 h-8  text-center items-center bg-teal-600 rounded-lg text-blue font-bold tracking-wide uppercase border border-teal-600 cursor-pointer hover:bg-black hover:text-white">
+        <span>Add Logo</span>
+        <input type='file' class="hidden" id="file" ref="file" v-on:change="handleFileUpload()"/>
+      </label>
+      <img v-bind:src="imagePreview" v-show="showPreview" class="w-24 rounded-full border border-teal-600 h-24 ml-4"/>
+    </div>
 
+                  </div>
                 </div>
 
 
@@ -412,29 +424,29 @@ export default {
     },
     async send() {
       try {
-      this.$nuxt.$loading.start()
-    const data = {
-    Bname:this.form.Bname,
-    Bcategory:this.form.Bcategory,
-    Bemail:this.form.Bemail,
-    Bphone:this.form.Bphone,
-    Btype:this.form.Btype,
-    Fname:this.form.Fname,
-    Lname:this.form.Lname,
-    Username:this.form.Username,
-    Email:this.form.Email,
-    Password:this.form.Password,
-    Aline1:this.form.Aline1,
-    Aline2:this.form.Aline1,
-    City:this.form.City,
-    State:this.form.State,
-    Country:this.form.Country,
-    Zipcode:this.form.Zipcode,
-    registered:true,
-    Confirm:this.form.Confirm,
-    paymentmade:false
-    }
 
+      this.$nuxt.$loading.start()
+    let data = new FormData();
+    data.append("Bname",this.form.Bname);
+    data.append("Bcategory",this.form.Bcategory);
+    data.append("Bemail",this.form.Bemail);
+    data.append("Bphone",this.form.Bphone);
+    data.append("Btype",this.form.Btype);
+    data.append("Blogo",this.form.selectedFile, this.form.selectedFile.name);
+    data.append("Fname",this.form.Fname);
+    data.append("Lname",this.form.Lname);
+    data.append("Username",this.form.Username);
+    data.append("Email",this.form.Email);
+    data.append("Password",this.form.Password);
+    data.append("Aline1",this.form.Aline1);
+    data.append("Aline2",this.form.Aline1);
+    data.append("City",this.form.City);
+    data.append("State",this.form.State);
+    data.append("Country",this.form.Country);
+    data.append("Zipcode",this.form.Zipcode);
+    data.append("registered", true);
+    data.append("Confirm",this.form.Confirm);
+    data.append("paymentmade", false);
     console.log(data)
     if(this.form.Password === this.form.Confirm){
   let response = await this.$axios.$post("/api/auth/signup", data);
@@ -458,14 +470,53 @@ export default {
     }
 
       } catch (error) {
-        console.log(error)
-         this.$toast.error('something went wrong!!!!!!!!!!!').goAway(2000);
+         this.$toast.error('something went wrong').goAway(2000);
          this.$nuxt.$loading.finish()
       }
 
 
 
-    }
+    },
+      handleFileUpload(){
+        this.form.selectedFile = event.target.files[0];
+        this.form.fileName = event.target.files[0].name;
+        /*
+          Set the local file variable to what the user has selected.
+        */
+        this.form.selectedFile = this.$refs.file.files[0];
+
+        /*
+          Initialize a File Reader object
+        */
+        let reader  = new FileReader();
+
+        /*
+          Add an event listener to the reader that when the file
+          has been loaded, we flag the show preview as true and set the
+          image to be what was read from the reader.
+        */
+        reader.addEventListener("load", function () {
+          this.showPreview = true;
+          this.imagePreview = reader.result;
+        }.bind(this), false);
+
+        /*
+          Check to see if the file is not empty.
+        */
+        if( this.form.selectedFile ){
+          /*
+            Ensure the file is an image file.
+          */
+          if ( /\.(jpe?g|png|gif)$/i.test( this.form.selectedFile.name ) ) {
+            /*
+              Fire the readAsDataURL method which will read the file in and
+              upon completion fire a 'load' event which we will listen to and
+              display the image in the preview.
+            */
+            reader.readAsDataURL( this.form.selectedFile );
+          }
+        }
+      }
     }
   }
 </script>

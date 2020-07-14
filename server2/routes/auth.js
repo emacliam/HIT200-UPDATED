@@ -26,82 +26,78 @@ cloudinary.config({
 
 /* signup Route */
 router.post('/auth/signup', async(req, res) => {
-    console.log(req.body)
-        /*     const response = Store.findOne({ Email: req.body.Email })
-            if (response.Email) {
-                console.log('user exists')
-            } else {
-                console.log('user doest exists create')
-                console.log('Creating new user......') */
-    try {
-        /*   const upload = multer({ storage }).single('Blogo')
-          upload(req, res, function(err) {
-              if (err) {
-                  return res.send(err)
-              }
-              console.log('file uploaded to server')
+    const response = Store.findOne({ Email: req.body.Email })
+    if (response.Email) {
+        console.log('user exists')
+    } else {
+        console.log('user doest exists create')
+        console.log('Creating new user......')
+        try {
+            const upload = multer({ storage }).single('Blogo')
+            upload(req, res, function(err) {
+                if (err) {
+                    return res.send(err)
+                }
+                console.log('file uploaded to server')
 
-              const path = req.file.path
-              const uniqueFilename = new Date().toISOString()
+                const path = req.file.path
+                const uniqueFilename = new Date().toISOString()
 
-              cloudinary.uploader.upload(
-                  path, { public_id: `logo/${uniqueFilename}`, tags: 'logo' }, // directory and tags are optional
-                  async function(err, image) {
-                      // note if there is an error we need to unlink the image from the server
-                      // Also use try catch here
-                      if (err) return res.send(err)
-                      console.log('file uploaded to Cloudinary')
-                          // remove file from server
-                      const fs = require('fs')
-                      fs.unlinkSync(path)
-                          // return image details
-                      const url = image.secure_url */
-        const newUser = new Store()
-        newUser.Bname = req.body.Bname
-        newUser.Bcategory = req.body.Bcategory
-        newUser.Bemail = req.body.Bemail
-        newUser.Bphone = req.body.Bphone
-        newUser.Btype = req.body.Btype
-        newUser.Fname = req.body.Fname
-        newUser.Aline1 = req.body.Aline1
-        newUser.Aline2 = req.body.Aline2
-        newUser.City = req.body.City
-        newUser.State = req.body.State
-        newUser.Country = req.body.Country
-        newUser.Zipcode = req.body.Zipcode
+                cloudinary.uploader.upload(
+                    path, { public_id: `logo/${uniqueFilename}`, tags: 'logo' }, // directory and tags are optional
+                    async function(err, image) {
+                        // note if there is an error we need to unlink the image from the server
+                        // Also use try catch here
+                        if (err) return res.send(err)
+                        console.log('file uploaded to Cloudinary')
+                            // remove file from server
+                        const fs = require('fs')
+                        fs.unlinkSync(path)
+                            // return image details
+                        const url = image.secure_url
+                        const newUser = new Store()
+                        newUser.Bname = req.body.Bname
+                        newUser.Bcategory = req.body.Bcategory
+                        newUser.Bemail = req.body.Bemail
+                        newUser.Bphone = req.body.Bphone
+                        newUser.Btype = req.body.Btype
+                        newUser.Blogo = url
+                        newUser.Fname = req.body.Fname
+                        newUser.Aline1 = req.body.Aline1
+                        newUser.Aline2 = req.body.Aline2
+                        newUser.City = req.body.City
+                        newUser.State = req.body.State
+                        newUser.Country = req.body.Country
+                        newUser.Zipcode = req.body.Zipcode
 
-        newUser.registered = req.body.registered
-        newUser.Email = req.body.Email
-        newUser.Password = req.body.Password
-        newUser.paymentmade = false
-        newUser.save()
+                        newUser.registered = req.body.registered
+                        newUser.Email = req.body.Email
+                        newUser.Password = req.body.Password
+                        newUser.paymentmade = false
+                        await newUser.save()
 
-
-        const token = jwt.sign(newUser.toJSON(), process.env.SECRET, {
-            expiresIn: 604800 // 1  week
-        })
-
-        res.json({
-            success: true,
-            token: token,
-            message: 'sucessfully created a new user'
-        })
-
-        /*
+                        const token = jwt.sign(newUser.toJSON(), process.env.SECRET, {
+                            expiresIn: 604800 // 1  week
                         })
-                }) */
-    } catch (err) {
-        console.log(err)
-        res.status(500).json({
+
+                        res.json({
+                            success: true,
+                            token: token,
+                            message: 'sucessfully created a new user'
+                        })
+                    })
+            })
+        } catch (err) {
+            res.status(500).json({
                 success: false,
                 message: err.message
             })
-            /*      const fsExtra = require('fs-extra')
+            const fsExtra = require('fs-extra')
 
-                 fsExtra.emptyDirSync('../upload/')
-                     ///fix the unlink of everything in a server ryt now */
+            fsExtra.emptyDirSync('../upload/')
+                ///fix the unlink of everything in a server ryt now
+        }
     }
-    /*  } */
 })
 
 /* profile route */
@@ -151,7 +147,7 @@ router.post('/auth/login', async(req, res) => {
             console.log(err)
             res.status(500).json({
                 success: false,
-                message: err
+                message: err.message
             })
         }
     })
