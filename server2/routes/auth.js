@@ -62,7 +62,6 @@ router.post('/auth/signup', async(req, res) => {
         newUser.Bemail = req.body.Bemail
         newUser.Bphone = req.body.Bphone
         newUser.Btype = req.body.Btype
-        newUser.Blogo = url
         newUser.Fname = req.body.Fname
         newUser.Aline1 = req.body.Aline1
         newUser.Aline2 = req.body.Aline2
