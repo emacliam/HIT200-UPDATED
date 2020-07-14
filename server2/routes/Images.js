@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Product = require('../models/product')
+const Product = require('../models/products')
 const cloudinary = require('cloudinary').v2
 const multer = require('multer')
 

@@ -60,7 +60,7 @@
                       <input
                         placeholder="Model"
                         class="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                        v-model="modal"
+                        v-model="model"
 
                       />
                     </div>
@@ -85,22 +85,6 @@
                      <div class="mb-8">
                   <div class="w-full mx-2 flex-1 svelte-1l8159u">
                       <div>
-                        <div
-                      class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
-                    >Product Type ( Add your Brand name here )
-
-                 </div>
-                    <div
-                      class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
-                    >
-                     <input
-                        placeholder="Type"
-                        type=""
-                        class="p-1 px-2 appearance-none outline-none w-full text-gray-800"
-                        v-model="type"
-
-                      />
-                    </div>
                      <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Product Price</div>
@@ -150,9 +134,8 @@ export default {
     return {
       name: '',
       price: 0,
-      modal:'',
+      model:'',
       size:'',
-      type:'',
       category:'',
       description: '',
       selectedFile: null,
@@ -172,11 +155,10 @@ export default {
       data.append('name', this.name)
       data.append('price', this.price)
       data.append('description', this.description)
-      data.append('modal', this.modal)
+      data.append('model', this.model)
       data.append('size', this.size)
-      data.append('type', this.type)
       data.append('category', this.category)
-      data.append('photo', this.selectedFile, this.selectedFile.name)
+      data.append('imageUrl', this.selectedFile, this.selectedFile.name)
 
       const result = await this.$axios.$post('/api/products', data)
      if(result.success === true){

@@ -1,3 +1,3 @@
-GET http://localhost:3000/api/products
+GET https://easylocate.herokuapp.com
 GET http://localhost:3000/api/stats
-POST http://localhost:3000/api/products/5f078729b718e67bd3171fa3
+POST https://easylocate.herokuapp.com/api/products/5f078729b718e67bd3171fa3

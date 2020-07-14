@@ -1,4 +1,5 @@
-const URL = 'http://localhost:3000'
+/* const URL = 'http://localhost:8000' */
+const URL = 'https://still-harbor-73295.herokuapp.com'
 export default {
     /*
      ** Nuxt rendering mode

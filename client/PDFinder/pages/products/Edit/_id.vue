@@ -4,7 +4,7 @@
               <div>
                 <div class="flex items-center">
                   <div>
-  <img :src="product.photo" alt="Product image" class="text-sm border-2 border-double border-teal-600 p-1 rounded-full w-24 h-24">
+  <img :src="product.imageUrl" alt="Product image" class="text-sm border-2 border-double border-teal-600 p-1 rounded-full w-24 h-24">
   <p class="text-sm text-gray-500 leading-tight italic">(current Image)</p>
                   </div>
 
@@ -66,9 +66,9 @@
                       class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
                     >
                       <input
-                        :placeholder="product.modal"
+                        :placeholder="product.model"
                         class="p-1 px-2 appearance-none outline-none font-medium w-full text-gray-800 placeholder-black"
-                        v-model="modal"
+                        v-model="model"
 
                       />
                     </div>
@@ -93,22 +93,6 @@
                      <div class="mb-8">
                   <div class="w-full mx-2 flex-1 svelte-1l8159u">
                       <div>
-                        <div
-                      class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
-                    >Product Type ( Add your Brand name here )
-
-                 </div>
-                    <div
-                      class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
-                    >
-                     <input
-                        :placeholder="product.type"
-                        type=""
-                        class="p-1 px-2 appearance-none outline-none font-medium w-full text-gray-800 placeholder-black"
-                        v-model="type"
-
-                      />
-                    </div>
                      <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Product Price</div>
@@ -170,9 +154,8 @@ export default {
       product:'',
       name: '',
       price: "",
-      modal:'',
+      model:'',
       size:'',
-      type:'',
       category:'',
       description: '',
       selectedFile: null,
@@ -192,12 +175,11 @@ export default {
           name:this.name,
           price:this.price,
           description:this.description,
-          modal:this.modal,
+          model:this.model,
           size:this.size,
-          type:this.type,
           category:this.category
         }
-      /* data.append('photo', this.selectedFile, this.selectedFile.name) */
+      /* data.append('imageUrl', this.selectedFile, this.selectedFile.name) */
      const result = await this.$axios.$put(`/api/products/${this.$route.params.id}`,data)
      console.log(result)
      if(result.success === true){
@@ -224,7 +206,7 @@ export default {
           this.selectedFile = event.target.files[0];
         this.fileName = event.target.files[0].name;
           let data = new FormData();
-        data.append("photo",this.selectedFile, this.selectedFile.name);
+        data.append("imageUrl",this.selectedFile, this.selectedFile.name);
 
         let response = await this.$axios.$put(`/api/products/image/${this.$route.params.id}`, data)
         if(response.success){

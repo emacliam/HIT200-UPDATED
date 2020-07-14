@@ -10,7 +10,7 @@
 
     <div class="w-full flex items-center">
       <div class="flex flex-col items-center">
- <img class="h-24 w-24  object-cover rounded-full border border-teal-600 pb-5/6" :src="product.photo">
+ <img class="h-24 w-24  object-cover rounded-full border border-teal-600 pb-5/6" :src="product.imageUrl">
     <label class=" flex flex-col items-center p-1 text-blue uppercase cursor-pointer hover:text-teal-600">
         <span class="leading-normal text-sm rounded-lg border p-1">Upload Photo</span>
         <input type='file' class="hidden" @change="onPhoto" />
@@ -38,11 +38,9 @@
     <div class="w-full">
       <section class="mt-8 ">Price:  ${{product.price}}</section>
       <hr>
-      <section class="mt-8 ">Model:  {{product.modal}}</section>
+      <section class="mt-8 ">Model:  {{product.model}}</section>
       <hr>
       <section class="mt-8 ">Size:   {{product.size}}</section>
-      <hr>
-      <section class="mt-8 ">Type:   {{product.type}}</section>
       <hr>
     </div>
       <div class="flex items-center justify-end mt-4 top-auto">

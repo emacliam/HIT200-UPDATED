@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 const bcrypt = require('bcrypt-nodejs')
 
-const UserSchema = new Schema({
+const StoreSchema = new Schema({
     Bname: String,
     Bcategory: String,
     Bemail: String,
@@ -28,7 +28,6 @@ const UserSchema = new Schema({
     registered: String,
     Bdescription: String,
     Adescription: String,
-    paymentmade: false,
     Email1: String,
     Email2: String,
     Facebook: String,
@@ -39,6 +38,7 @@ const UserSchema = new Schema({
 
     Latitude: String,
     Longitude: String,
+    paymentmade: false,
     isChecked: {
         type: String,
         default: false
@@ -55,7 +55,7 @@ const UserSchema = new Schema({
 })
 
 // encrypting before saving
-UserSchema.pre('save', function(next) {
+StoreSchema.pre('save', function(next) {
     const user = this
     if (this.isModified('Password') || this.isNew) {
         bcrypt.genSalt(10, function(err, salt) {
@@ -76,10 +76,10 @@ UserSchema.pre('save', function(next) {
     }
 })
 
-UserSchema.methods.comparePassword = function(Password, next) {
+StoreSchema.methods.comparePassword = function(Password, next) {
     // no arrow function coz we want to access the user using this;
-    const user = this
-    return bcrypt.compareSync(Password, user.Password)
+    const store = this
+    return bcrypt.compareSync(Password, store.Password)
 }
 
-module.exports = mongoose.model('User', UserSchema)
+module.exports = mongoose.model('Store', StoreSchema)

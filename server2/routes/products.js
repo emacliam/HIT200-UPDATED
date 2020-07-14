@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const Product = require('../models/product')
+const Product = require('../models/products')
 const cloudinary = require('cloudinary').v2
 const multer = require('multer')
 const verifyToken = require('../middlewares/verify-token')
@@ -26,7 +26,7 @@ cloudinary.config({
 router.post('/products', (req, res) => {
     try {
 
-        const upload = multer({ storage }).single('photo')
+        const upload = multer({ storage }).single('imageUrl')
         upload(req, res, function(err) {
             if (err) {
                 return res.send(err)
@@ -54,10 +54,9 @@ router.post('/products', (req, res) => {
                     product.name = req.body.name
                     product.price = req.body.price
                     product.description = req.body.description
-                    product.photo = url
-                    product.modal = req.body.modal
+                    product.imageUrl = url
+                    product.model = req.body.model
                     product.size = req.body.size
-                    product.type = req.body.type
                     product.category = req.body.category
                     product.date = moment().format('MMMM Do YYYY');
 
@@ -126,10 +125,8 @@ router.put('/products/:id', async(req, res) => {
             if (req.body.price) product.price = req.body.price
             if (req.body.category) product.category = req.body.category
             if (req.body.size) product.size = req.body.size
-
             if (req.body.description) product.description = req.body.description
-            if (req.body.type) product.type = req.body.type
-            if (req.body.modal) product.modal = req.body.modal
+            if (req.body.model) product.model = req.body.model
             const response = await product.save()
             res.json({
                 success: true,
@@ -150,7 +147,7 @@ router.put('/products/:id', async(req, res) => {
 router.put('/products/image/:id', async(req, res) => {
     try {
 
-        const upload = multer({ storage }).single('photo')
+        const upload = multer({ storage }).single('imageUrl')
         upload(req, res, function(err) {
             if (err) {
                 return res.send(err)
@@ -174,7 +171,7 @@ router.put('/products/image/:id', async(req, res) => {
 
                     const product = await Product.findOne({ _id: req.params.id })
                     if (product) {
-                        if (url) product.photo = url
+                        if (url) product.imageUrl = url
                         product.date = Date.now()
                         const response = await product.save()
                         res.json({

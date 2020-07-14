@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const User = require('../models/user');
+const User = require('../models/store');
 const verifyToken = require('../middlewares/verify-token');
 
 router.put('/map', verifyToken, async(req, res) => {

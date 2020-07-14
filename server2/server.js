@@ -37,7 +37,10 @@ const ReportRoute = require('./routes/Reports');
 const mapRoute = require('./routes/map');
 const StatsRoute = require('./routes/statistics');
 const SettingsRoute = require('./routes/settings');
+const index = require('./routes/index');
 
+
+app.use('/', index)
 app.use('/api', applyBusiness)
 app.use('/api', accessCodes)
 app.use('/api', authRoute)
@@ -49,10 +52,11 @@ app.use('/api', mapRoute)
 app.use('/api', StatsRoute)
 app.use('/api', SettingsRoute)
 
-app.listen(3000, (err) => {
+const port = process.env.PORT || 8000;
+app.listen(port, (err) => {
     if (err) {
         console.log(err)
     } else {
-        console.log('connected on port 3005 ')
+        console.log('connected on port', port)
     }
 })

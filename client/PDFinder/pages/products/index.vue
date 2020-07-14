@@ -106,18 +106,17 @@
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
                                             <div class="flex items-center">
                                                 <div class="flex-shrink-0 h-10 w-10">
-                                                    <img class="h-10 w-10 rounded-full" :src="product.photo" alt="" />
+                                                    <img class="h-10 w-10 rounded-full" :src="product.imageUrl" alt="" />
                                                 </div>
 
                                                 <div class="ml-4">
                                                     <div class="text-sm leading-5 font-medium text-gray-900">{{product.name}}</div>
-                                                    <div class="text-sm leading-5 text-gray-500">{{product.type}}</div>
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
-                                            <div class="text-sm leading-5 text-gray-900">{{product.modal}}</div>
+                                            <div class="text-sm leading-5 text-gray-900">{{product.model}}</div>
                                         </td>
 
                                         <td class="px-6 py-4 whitespace-no-wrap border-b border-gray-200">
@@ -142,11 +141,10 @@
                         <div class="w-full flex flex-wrap">
                              <div v-for="(product, index) in filteredProducts" :key="product._id"  class="flex flex-wrap w-56 ">
                             <div class="flex flex-col w-auto m-2 items-center border p-2 border-gray-500 rounded-lg bg-white">
-                                <img class="h-36 w-36 rounded-lg" :src="product.photo" alt="" />
+                                <img class="h-36 w-36 rounded-lg" :src="product.imageUrl" alt="" />
                             <div class="m-4">
                                   <div class="text-sm leading-5 font-medium text-gray-900">{{product.name}}</div>
-                                  <div class="text-sm leading-5 text-gray-500">{{product.type}}</div>
-                                  <div class="text-sm leading-5 text-gray-900">{{product.modal}}</div>
+                                  <div class="text-sm leading-5 text-gray-900">{{product.model}}</div>
                             </div>
                             <div>
                                   <nuxt-link :to="`/products/Edit/${product._id}`" class="text-indigo-600 hover:text-indigo-900 border-r-2 px-2 border-teal-600">Edit</nuxt-link>
