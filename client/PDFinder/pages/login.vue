@@ -12,29 +12,34 @@
           <div class="text-center font-semibold text-teal-600">
            WELCOME
           </div>
+<ValidationObserver v-slot="{ handleSubmit }">
 
-          <form class="mt-8">
+
+          <form class="mt-8" @submit.prevent="handleSubmit(onSubmit)">
             <div class="mx-auto max-w-lg">
 				<div>
 					  <span class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">EMAIL</span>
                  <div class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
+         <ValidationProvider name="E-mail" rules="required" v-slot="{ errors }">
+        <input v-model="email" type="email"   class="text-md block px-3 py-2 w-full
+                bg-white placeholder-gray-600 focus:placeholder-gray-500 focus:outline-none">
+        <span class="text-red-600">{{ errors[0] }}</span>
+      </ValidationProvider>
 
-                <input placeholder="" type="email"
-                  class="text-md block px-3 py-2 w-full
-                bg-white placeholder-gray-600 focus:placeholder-gray-500 focus:outline-none"
-				v-model="email"
-				>
+
               </div>
 				</div>
 
               <div class="py-2">
                 <span class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">PASSWORD</span>
                 <div class="relative bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u">
-                  <input placeholder="" :type="show ? 'password' : 'text'" class="text-md block px-3 py-2 w-full
+  <ValidationProvider rules="required" v-slot="{ errors }">
+    <input v-model="password" :type="show ? 'password' : 'text'" class="text-md block px-3 py-2 w-full
                 bg-white placeholder-gray-600
-                focus:outline-none"
-				v-model="password"
-				>
+                focus:outline-none" placeholder="Enter password">
+    <span class="text-red-600">{{ errors[0] }}</span>
+  </ValidationProvider>
+
                   <div class="absolute inset-y-0 right-0 pr-3 flex items-center text-sm leading-5 cursor-pointer">
 
                     <svg class="h-6 text-gray-700" fill="none" @click="show = !show"
@@ -65,13 +70,14 @@
 					  <div>
                          <p>Dont have an Account? <nuxt-link to="/Apply" class="hover:underline text-teal-600"> Apply</nuxt-link>  Or if you already applied <nuxt-link to="/access"  class="hover:underline text-teal-600">Signup</nuxt-link> </p>
 					  </div>
-					  <span @click="onLogin" class="mt-3 text-lg  text-center font-semibold
+					  <button type="submit" class="mt-3 text-lg  text-center font-semibold
                 bg-teal-600 w-full rounded-lg
                 px-6 py-3 block shadow-xl hover:text-white hover:bg-black cursor-pointer">
                 Login
-              </span>
+              </button>
             </div>
           </form>
+  </ValidationObserver>
 
         </div>
       </div>
@@ -84,8 +90,13 @@
 </template>
 
 <script>
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 export default {
     layout:"none",
+      components: {
+    ValidationProvider,
+    ValidationObserver
+  },
   data() {
         return {
            email:"",
@@ -94,7 +105,7 @@ export default {
         }
     },
     methods: {
-   async onLogin(){
+   async onSubmit(){
        try {
              let response =  await this.$auth.loginWith("local", {
                    data: {

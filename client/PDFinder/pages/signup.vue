@@ -1,8 +1,9 @@
 <template>
   <main class="h-screen w-screen pt-8">
     <div class="container pt-5 pb-5 w-3/4 m-auto bg-white rounded-lg">
-      <form>
-        <span v-for="e in errors" :key="e">{{ e }}</span>
+    <ValidationObserver v-slot="{ handleSubmit }" >
+      <form  @submit.prevent="handleSubmit(onSubmit)">
+        <span v-for="e in errors" :key="e" class="text-red-600">{{ e }}</span>
 
 
         <section v-if="step == 1">
@@ -12,7 +13,7 @@
               <div>
                   <!--  1 -->
                 <div class="flex flex-col md:flex-row">
-                  <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                    <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full flex-1 mx-2 svelte-1l8159u">
                     <label  class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3"  >Business Name</label>
                     <br>
                     <div
@@ -23,9 +24,12 @@
                         class="p-1 px-2 appearance-none outline-none w-full text-gray-800"
                         v-model="form.Bname"
                       />
+
                     </div>
-                  </div>
-                  <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                    <span class="text-red-600">{{ errors[0] }}</span>
+                          </ValidationProvider>
+
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }"  class="w-full flex-1 mx-2 svelte-1l8159u">
                         <label  class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Business Category</label>
                      <br>
                     <div
@@ -37,11 +41,12 @@
                         v-model="form.Bcategory"
                       />
                     </div>
-                  </div>
+                          <span class="text-red-600">{{ errors[0] }}</span>
+                  </ValidationProvider>
                 </div>
 <!--  2 -->
                 <div class="flex flex-col md:flex-row">
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                  <ValidationProvider  rules="required|phone" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Business PhoneNumber / Mobile Number</div>
@@ -54,8 +59,9 @@
                         v-model="form.Bphone"
                       />
                     </div>
-                  </div>
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  <ValidationProvider  rules="required|email" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Business Email Address</div>
@@ -69,11 +75,12 @@
                         v-model="form.Bemail"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
   <!--  3 -->
                      <div class="flex flex-col md:flex-row">
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Business Type</div>
@@ -86,8 +93,9 @@
                           <option value="Other">Other</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  <ValidationProvider  rules="required|image" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Company Logo(optional)</div>
@@ -99,7 +107,8 @@
       <img v-bind:src="imagePreview" v-show="showPreview" class="w-24 rounded-full border border-teal-600 h-24 ml-4"/>
     </div>
 
-                  </div>
+        <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
 
 
@@ -118,7 +127,7 @@
                   class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3"
                 >Full Name</div>
                 <div class="flex flex-col md:flex-row">
-                  <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full flex-1 mx-2 svelte-1l8159u">
                     <div
                       class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
                     >
@@ -128,8 +137,9 @@
                         v-model="form.Fname"
                       />
                     </div>
-                  </div>
-                  <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full flex-1 mx-2 svelte-1l8159u">
                     <div
                       class="bg-white my-2 p-1 flex border border-gray-500 rounded svelte-1l8159u"
                     >
@@ -139,10 +149,11 @@
                         v-model="form.Lname"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
                 <div class="flex flex-col md:flex-row">
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Username</div>
@@ -155,8 +166,9 @@
                         v-model="form.Username"
                       />
                     </div>
-                  </div>
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  <ValidationProvider  rules="required|email" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Your Email</div>
@@ -170,10 +182,11 @@
                         v-model="form.Email"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
                  <div class="flex flex-col md:flex-row">
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                  <ValidationProvider  rules="required|password" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Password</div>
@@ -186,8 +199,9 @@
                         v-model="form.Password"
                       />
                     </div>
-                  </div>
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  <ValidationProvider  rules="required|confirmed:password" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Confirm Password</div>
@@ -199,7 +213,8 @@
                         v-model="form.Confirm"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
               </div>
             </div>
@@ -214,7 +229,7 @@
               <div>
                   <!--  1 -->
                 <div class="flex flex-col md:flex-row">
-                  <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full flex-1 mx-2 svelte-1l8159u">
                     <label  class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Address line 1</label>
                     <br>
                     <div
@@ -226,8 +241,9 @@
                         v-model="form.Aline1"
                       />
                     </div>
-                  </div>
-                  <div class="w-full flex-1 mx-2 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full flex-1 mx-2 svelte-1l8159u">
                         <label  class="font-bold text-gray-600 text-xs leading-8 uppercase h-6 mx-2 mt-3">Address line 2(optional)</label>
                      <br>
                     <div
@@ -239,11 +255,12 @@
                       v-model="form.Aline2"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
 <!--  2 -->
                 <div class="flex flex-col md:flex-row">
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >City</div>
@@ -256,8 +273,9 @@
                         v-model="form.City"
                       />
                     </div>
-                  </div>
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                   </ValidationProvider>
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >state/Province</div>
@@ -270,11 +288,12 @@
                         v-model="form.State"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                    </ValidationProvider>
                 </div>
   <!--  3 -->
                      <div class="flex flex-col md:flex-row">
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                  <ValidationProvider  rules="required|alpha" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Country</div>
@@ -287,8 +306,9 @@
                           <option value="Other">Other</option>
                       </select>
                     </div>
-                  </div>
-                  <div class="w-full mx-2 flex-1 svelte-1l8159u">
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                   </ValidationProvider>
+                  <ValidationProvider  rules="required|alpha|digit" v-slot="{ errors }" class="w-full mx-2 flex-1 svelte-1l8159u">
                     <div
                       class="font-bold h-6 mt-3 text-gray-600 text-xs leading-8 uppercase"
                     >Zipcode</div>
@@ -301,7 +321,8 @@
                         v-model="form.Zipcode"
                       />
                     </div>
-                  </div>
+                            <span class="text-red-600">{{ errors[0] }}</span>
+                  </ValidationProvider>
                 </div>
 
 
@@ -315,23 +336,23 @@
           <Step4 />
           <div class="mt-8 flex items-center justify-center">
             <div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Business name:</span>{{ form.Bname }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business category:</span>{{ form.Bcategory }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business email:</span>{{ form.Bemail }}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business phone:</span>{{ form.Bphone}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business type:</span>{{ form.Btype}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">First name:</span>{{form.Fname}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Last name:</span>{{form.Lname}}</div>
-          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Username:</span>{{form.Username}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Business name:</span class="text-red-600">{{ form.Bname }}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business category:</span class="text-red-600">{{ form.Bcategory }}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business email:</span class="text-red-600">{{ form.Bemail }}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business phone:</span class="text-red-600">{{ form.Bphone}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">business type:</span class="text-red-600">{{ form.Btype}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">First name:</span class="text-red-600">{{form.Fname}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Last name:</span class="text-red-600">{{form.Lname}}</div>
+          <div class="m-4"> <span class="uppercase font-bold text-teal-600 m-4">Username:</span class="text-red-600">{{form.Username}}</div>
             </div>
             <div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Email:</span>{{form.Email}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address one:</span>{{form.Aline1}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address two:</span>{{form.Aline2}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">City:</span>{{form.City}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">State:</span>{{form.State}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Country:</span>{{form.Country}}</div>
-          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Zipcode:</span>{{form.Zipcode}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Email:</span class="text-red-600">{{form.Email}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address one:</span class="text-red-600">{{form.Aline1}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Address two:</span class="text-red-600">{{form.Aline2}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">City:</span class="text-red-600">{{form.City}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">State:</span class="text-red-600">{{form.State}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Country:</span class="text-red-600">{{form.Country}}</div>
+          <div class="m-4"><span class="uppercase font-bold text-teal-600 m-4">Zipcode:</span class="text-red-600">{{form.Zipcode}}</div>
           <div class="m-4"></div>
 
             </div>
@@ -350,6 +371,7 @@
           >Previous</button>
           <div class="flex-auto flex flex-row-reverse">
             <button
+            hidden="handleSubmit"
               class="text-base w-48 hover:bg-black hover:text-white uppercase bg-teal-600 flex justify-center px-4 py-2 rounded font-bold cursor-pointer"
               v-if="step != totalsteps"
               @click.prevent="nextstep"
@@ -362,6 +384,7 @@
           </div>
         </div>
       </form>
+    </validationObserver>
     </div>
   </main>
 </template>
@@ -371,13 +394,16 @@ import Step1 from "~/components/step1";
 import Step2 from "~/components/step2";
 import Step3 from "~/components/step3";
 import Step4 from "~/components/step4";
+import { ValidationObserver, ValidationProvider } from "vee-validate";
 export default {
    layout:"none",
   components: {
     Step1,
     Step2,
     Step3,
-    Step4
+    Step4,
+        ValidationObserver,
+    ValidationProvider
   },
   data() {
     return {

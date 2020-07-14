@@ -156,7 +156,11 @@ export default {
   methods: {
     async onAddProduct () {
       try {
-        this.$nuxt.$loading.start()
+        if(this.$auth.$state.user.Latitude === ''){
+        this.$router.push("/Account/locationSet")
+        }else{
+
+      this.$nuxt.$loading.start()
       const data = new FormData()
       data.append('ownerID', this.$auth.$state.user._id)
       data.append('name', this.name)
@@ -178,6 +182,9 @@ export default {
        this.$nuxt.$loading.finish()
 
      }
+
+        }
+
 
       } catch (error) {
         this.$toast.success('Something happened').goAway(2000);

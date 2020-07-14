@@ -36,14 +36,6 @@ export default {
         { src: "~plugins/hchs-vue-charts.js", ssr: false },
         "~/plugins/vee-validate.js",
     ],
-    nuxtValidate: {
-        lang: 'es',
-        nuxti18n: {
-            locale: {
-                'zh-CN': 'zh_CN'
-            }
-        }
-    },
     loading: '~/components/loading.vue',
     /*
      ** Nuxt.js dev-modules
@@ -61,8 +53,7 @@ export default {
         '@nuxtjs/pwa',
         // Doc: https://github.com/nuxt/content
         '@nuxtjs/auth',
-        '@nuxtjs/toast',
-        'nuxt-validate'
+        '@nuxtjs/toast'
 
     ],
 

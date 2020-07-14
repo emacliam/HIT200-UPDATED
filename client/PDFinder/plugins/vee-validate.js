@@ -1,12 +1,6 @@
 import { extend } from "vee-validate";
-import * as VeeValidate from 'vee-validate';
-import { required, alpha } from "vee-validate/dist/rules";
+import { required, alpha, image, digits, integer } from "vee-validate/dist/rules";
 
-Vue.use(VeeValidate, {
-    inject: true,
-    fieldsBagName: '$veeFields',
-    errorBagName: '$veeErrors'
-})
 extend("required", {
     ...required,
     message: "This field is required"
@@ -23,4 +17,29 @@ extend('password', {
         return value === target;
     },
     message: 'Password confirmation does not match'
+});
+extend("image", {
+    ...image,
+    message: "Field must have an image"
+});
+
+extend('digits', {
+    ...digits,
+    message: 'Enter digits only'
+})
+
+extend('integer', {
+    ...integer,
+    messasge: 'Only integers allowed'
+});
+extend('phone', {
+    message(fieldName) {
+        return `${fieldName} is not a valid phone number`;
+    },
+    validate(value) {
+        return new Promise(resolve => {
+            let phone = new PhoneNumber(value);
+            resolve({ valid: phone.isValid() })
+        });
+    }
 });
